@@ -1,0 +1,110 @@
+import type { SubTextApi } from '@get-subtext/lib.api.subtext';
+import { toSubtitles } from '@get-subtext/lib.subtitles.utils';
+import Fuse from 'fuse.js';
+import { compact, includes, map, orderBy, uniq } from 'lodash-es';
+import type * as T from './SubTextDataAccess.types';
+
+export class SubTextDataAccess implements T.SubTextDataAccess {
+  private extraImdbIds: string[] = [];
+
+  public constructor(
+    private readonly apiUrlBase: string,
+    private readonly showNRecentMovies: number,
+    private readonly searchNRecentMovies: number,
+    private readonly subTextApi: SubTextApi,
+    private readonly myListService: T.MyListService
+  ) {}
+
+  public async getRecentMovies(): Promise<T.MovieView[]> {
+    const imdbIds = await this.queryAllMovies(this.showNRecentMovies);
+    const movies = await Promise.all(map(imdbIds, (imdbId) => this.getMovie(imdbId)));
+    const moviesCompact = compact(movies);
+    const moviesSorted = orderBy(moviesCompact, ['releaseDate', 'releaseYear', 'title'], ['desc', 'desc', 'asc']);
+    const output: T.MovieView[] = moviesSorted;
+    return output;
+  }
+
+  public async searchMovies(query: string): Promise<T.MovieView[]> {
+    const imdbIds = await this.queryAllMovies(this.searchNRecentMovies);
+    const movies = await Promise.all(map(imdbIds, (imdbId) => this.getMovie(imdbId)));
+    const moviesCompact = compact(movies);
+    const fuse = new Fuse(moviesCompact, { keys: ['title'], threshold: 0.3, distance: 100, minMatchCharLength: 2, useExtendedSearch: true });
+    const fuseResults = fuse.search(query);
+    const output = map(fuseResults, (r) => r.item);
+    return output;
+  }
+
+  public async getMyListMovies(userId: string): Promise<T.MovieView[]> {
+    const imdbIds = await this.myListService.getMyList();
+    const movies = await Promise.all(map(imdbIds, (imdbId) => this.getMovie(imdbId)));
+    const moviesCompact = compact(movies);
+    const moviesSorted = orderBy(moviesCompact, ['releaseDate', 'releaseYear', 'title'], ['desc', 'desc', 'asc']);
+    const output: T.MovieView[] = moviesSorted;
+    return output;
+  }
+
+  public async getMovie(imdbId: string): Promise<T.MovieView | null> {
+    const movie = await this.doGetMovie(imdbId);
+    return movie === null ? null : movie;
+  }
+
+  public async getMovieToWatch(imdbId: string): Promise<T.MovieWatch | null> {
+    const movie = await this.subTextApi.getMovie(imdbId);
+    if (movie === null || !movie.isAvailable) return null;
+
+    const subtitleFilesRaw = await Promise.all(map(movie.subtitleFileIds, (sid) => this.getSubtitleFiles(imdbId, sid)));
+    const subtitleFiles = compact(subtitleFilesRaw);
+
+    const { title, runTimeMins } = movie;
+    return { imdbId, title, runTimeMins, subtitleFiles };
+  }
+
+  private async queryAllMovies(maxMovies: number): Promise<string[]> {
+    const output: string[] = this.extraImdbIds;
+
+    let idx = 1;
+    while (true) {
+      const page = await this.subTextApi.queryMovies(idx);
+      if (page === null) break;
+      for (let i = 0; i < page.imdbIds.length; i++) {
+        output.push(page.imdbIds[i]);
+        if (output.length >= maxMovies) break;
+      }
+
+      if (idx >= page.pageCount) break;
+      idx++;
+    }
+
+    return uniq(output);
+  }
+
+  private async doGetMovie(imdbId: string): Promise<T.MovieView | T.MovieView | null> {
+    const movie = await this.subTextApi.getMovie(imdbId);
+    console.log(movie);
+
+    if (movie === null || !movie.isAvailable) return null;
+
+    const { posterIds, subtitleFileIds: subtitleIds, isAvailable, ...rest } = movie;
+    const posterUrl = await this.getPosterUrl(imdbId, posterIds);
+    const subtitleCount = subtitleIds.length;
+
+    const myListMovieIds = await this.myListService.getMyList();
+    const isOnMyList = includes(myListMovieIds, movie.imdbId);
+
+    return { posterUrl, subtitleCount, isOnMyList, ...rest };
+  }
+
+  private async getSubtitleFiles(imdbId: string, subtitleId: string) {
+    const subtitleFile = await this.subTextApi.getSubtitleFile(imdbId, subtitleId);
+    if (subtitleFile === null) return null;
+    const subtitles = toSubtitles(subtitleFile.subtitles);
+    return { subtitleId: subtitleFile.subtitleFileId, source: subtitleFile.source.origin, author: subtitleFile.source.author, subtitles };
+  }
+
+  private async getPosterUrl(imdbId: string, posterIds: string[]) {
+    if (posterIds.length === 0) return null;
+    const poster = await this.subTextApi.getPoster(imdbId, posterIds[0]);
+    if (poster === null) return null;
+    return `${this.apiUrlBase}/movies/${imdbId}/posters/${posterIds[0]}/${poster.fileName}`;
+  }
+}
