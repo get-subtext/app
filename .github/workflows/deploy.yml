@@ -29,10 +29,10 @@ jobs:
 
       - name: Build
         env:
-          BASE_PATH: '/${{ github.event.repository.name }}'
           DB_REPO_TOKEN: ${{ secrets.DB_REPO_TOKEN }}
           DB_REPO_OWNER: ${{ vars.DB_REPO_OWNER }}
           DB_REPO_NAME: ${{ vars.DB_REPO_NAME }}
+          BASE_PATH: '/${{ github.event.repository.name }}'
         run: |
           echo "PUBLIC_DB_REPO_TOKEN=\"$DB_REPO_TOKEN\"" > ./packages/app/.env
           echo "PUBLIC_DB_REPO_OWNER=\"$DB_REPO_OWNER\"" >> ./packages/app/.env
