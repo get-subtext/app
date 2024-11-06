@@ -13,10 +13,10 @@ export class GitHubService {
       lines.push('');
       lines.push('===');
       lines.push('');
-      lines.push(`requestId: ${requestId}`);
-      lines.push(`userId: ${userId}`);
       lines.push(`type: SYNC_MOVIE`);
+      lines.push(`requestId: ${requestId}`);
       lines.push(`imdbId: ${imdbId}`);
+      lines.push(`userId: ${userId}`);
 
       const issueData = { title: imdbId, body: join(lines, '\n'), labels: ['subtext-bot'] };
 
