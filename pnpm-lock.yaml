@@ -25,125 +25,22 @@ importers:
         version: 3.3.3
       prettier-plugin-svelte:
         specifier: ^3.2.7
-        version: 3.2.7(prettier@3.3.3)(svelte@5.1.10)
+        version: 3.2.7(prettier@3.3.3)(svelte@5.1.11)
       shx:
         specifier: ^0.3.4
         version: 0.3.4
 
-  packages.api/api.subtext:
-    dependencies:
-      '@types/node':
-        specifier: ^22.9.0
-        version: 22.9.0
-    devDependencies:
-      '@types/jest':
-        specifier: ^29.5.14
-        version: 29.5.14
-      jest:
-        specifier: ^29.7.0
-        version: 29.7.0(@types/node@22.9.0)
-      shx:
-        specifier: ^0.3.4
-        version: 0.3.4
-      ts-jest:
-        specifier: ^29.2.5
-        version: 29.2.5(@babel/core@7.26.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.26.0))(jest@29.7.0(@types/node@22.9.0))(typescript@5.6.3)
-      typescript:
-        specifier: ^5.6.3
-        version: 5.6.3
-
-  packages.data-access/data-access.subtext:
-    dependencies:
-      '@types/lodash-es':
-        specifier: ^4.17.12
-        version: 4.17.12
-      '@types/node':
-        specifier: ^22.9.0
-        version: 22.9.0
-      fuse.js:
-        specifier: ^7.0.0
-        version: 7.0.0
-      lodash-es:
-        specifier: ^4.17.21
-        version: 4.17.21
-    devDependencies:
-      '@types/jest':
-        specifier: ^29.5.14
-        version: 29.5.14
-      jest:
-        specifier: ^29.7.0
-        version: 29.7.0(@types/node@22.9.0)
-      shx:
-        specifier: ^0.3.4
-        version: 0.3.4
-      ts-jest:
-        specifier: ^29.2.5
-        version: 29.2.5(@babel/core@7.26.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.26.0))(jest@29.7.0(@types/node@22.9.0))(typescript@5.6.3)
-      typescript:
-        specifier: ^5.6.3
-        version: 5.6.3
-
-  packages.subtitles/subtitles:
-    dependencies:
-      '@types/node':
-        specifier: ^22.9.0
-        version: 22.9.0
-    devDependencies:
-      '@types/jest':
-        specifier: ^29.5.14
-        version: 29.5.14
-      jest:
-        specifier: ^29.7.0
-        version: 29.7.0(@types/node@22.9.0)
-      shx:
-        specifier: ^0.3.4
-        version: 0.3.4
-      ts-jest:
-        specifier: ^29.2.5
-        version: 29.2.5(@babel/core@7.26.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.26.0))(jest@29.7.0(@types/node@22.9.0))(typescript@5.6.3)
-      typescript:
-        specifier: ^5.6.3
-        version: 5.6.3
-
-  packages.subtitles/subtitles.utils:
-    dependencies:
-      '@types/lodash-es':
-        specifier: ^4.17.12
-        version: 4.17.12
-      '@types/node':
-        specifier: ^22.9.0
-        version: 22.9.0
-      lodash-es:
-        specifier: ^4.17.21
-        version: 4.17.21
-    devDependencies:
-      '@types/jest':
-        specifier: ^29.5.14
-        version: 29.5.14
-      jest:
-        specifier: ^29.7.0
-        version: 29.7.0(@types/node@22.9.0)
-      shx:
-        specifier: ^0.3.4
-        version: 0.3.4
-      ts-jest:
-        specifier: ^29.2.5
-        version: 29.2.5(@babel/core@7.26.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.26.0))(jest@29.7.0(@types/node@22.9.0))(typescript@5.6.3)
-      typescript:
-        specifier: ^5.6.3
-        version: 5.6.3
-
-  packages/app:
+  packages.app/app:
     devDependencies:
       '@sveltejs/adapter-static':
         specifier: ^3.0.6
-        version: 3.0.6(@sveltejs/kit@2.7.7(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.1.10)(vite@5.4.10(@types/node@22.9.0)))(svelte@5.1.10)(vite@5.4.10(@types/node@22.9.0)))
+        version: 3.0.6(@sveltejs/kit@2.7.7(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.1.11)(vite@5.4.10(@types/node@22.9.0)))(svelte@5.1.11)(vite@5.4.10(@types/node@22.9.0)))
       '@sveltejs/kit':
         specifier: ^2.7.7
-        version: 2.7.7(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.1.10)(vite@5.4.10(@types/node@22.9.0)))(svelte@5.1.10)(vite@5.4.10(@types/node@22.9.0))
+        version: 2.7.7(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.1.11)(vite@5.4.10(@types/node@22.9.0)))(svelte@5.1.11)(vite@5.4.10(@types/node@22.9.0))
       '@sveltejs/vite-plugin-svelte':
         specifier: ^4.0.0
-        version: 4.0.0(svelte@5.1.10)(vite@5.4.10(@types/node@22.9.0))
+        version: 4.0.0(svelte@5.1.11)(vite@5.4.10(@types/node@22.9.0))
       '@types/lodash-es':
         specifier: ^4.17.12
         version: 4.17.12
@@ -166,11 +63,11 @@ importers:
         specifier: ^8.4.47
         version: 8.4.47
       svelte:
-        specifier: ^5.1.10
-        version: 5.1.10
+        specifier: ^5.1.11
+        version: 5.1.11
       svelte-check:
         specifier: ^4.0.5
-        version: 4.0.5(picomatch@4.0.2)(svelte@5.1.10)(typescript@5.6.3)
+        version: 4.0.5(picomatch@4.0.2)(svelte@5.1.11)(typescript@5.6.3)
       tailwind-merge:
         specifier: ^2.5.4
         version: 2.5.4
@@ -186,6 +83,109 @@ importers:
       vite:
         specifier: ^5.4.10
         version: 5.4.10(@types/node@22.9.0)
+
+  packages.lib.api/api.subtext:
+    dependencies:
+      '@types/node':
+        specifier: ^22.9.0
+        version: 22.9.0
+    devDependencies:
+      '@types/jest':
+        specifier: ^29.5.14
+        version: 29.5.14
+      jest:
+        specifier: ^29.7.0
+        version: 29.7.0(@types/node@22.9.0)
+      shx:
+        specifier: ^0.3.4
+        version: 0.3.4
+      ts-jest:
+        specifier: ^29.2.5
+        version: 29.2.5(@babel/core@7.26.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.26.0))(jest@29.7.0(@types/node@22.9.0))(typescript@5.6.3)
+      typescript:
+        specifier: ^5.6.3
+        version: 5.6.3
+
+  packages.lib.data-access/data-access.subtext:
+    dependencies:
+      '@types/lodash-es':
+        specifier: ^4.17.12
+        version: 4.17.12
+      '@types/node':
+        specifier: ^22.9.0
+        version: 22.9.0
+      fuse.js:
+        specifier: ^7.0.0
+        version: 7.0.0
+      lodash-es:
+        specifier: ^4.17.21
+        version: 4.17.21
+    devDependencies:
+      '@types/jest':
+        specifier: ^29.5.14
+        version: 29.5.14
+      jest:
+        specifier: ^29.7.0
+        version: 29.7.0(@types/node@22.9.0)
+      shx:
+        specifier: ^0.3.4
+        version: 0.3.4
+      ts-jest:
+        specifier: ^29.2.5
+        version: 29.2.5(@babel/core@7.26.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.26.0))(jest@29.7.0(@types/node@22.9.0))(typescript@5.6.3)
+      typescript:
+        specifier: ^5.6.3
+        version: 5.6.3
+
+  packages.lib.subtitles/subtitles:
+    dependencies:
+      '@types/node':
+        specifier: ^22.9.0
+        version: 22.9.0
+    devDependencies:
+      '@types/jest':
+        specifier: ^29.5.14
+        version: 29.5.14
+      jest:
+        specifier: ^29.7.0
+        version: 29.7.0(@types/node@22.9.0)
+      shx:
+        specifier: ^0.3.4
+        version: 0.3.4
+      ts-jest:
+        specifier: ^29.2.5
+        version: 29.2.5(@babel/core@7.26.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.26.0))(jest@29.7.0(@types/node@22.9.0))(typescript@5.6.3)
+      typescript:
+        specifier: ^5.6.3
+        version: 5.6.3
+
+  packages.lib.subtitles/subtitles.utils:
+    dependencies:
+      '@types/lodash-es':
+        specifier: ^4.17.12
+        version: 4.17.12
+      '@types/node':
+        specifier: ^22.9.0
+        version: 22.9.0
+      lodash-es:
+        specifier: ^4.17.21
+        version: 4.17.21
+    devDependencies:
+      '@types/jest':
+        specifier: ^29.5.14
+        version: 29.5.14
+      jest:
+        specifier: ^29.7.0
+        version: 29.7.0(@types/node@22.9.0)
+      shx:
+        specifier: ^0.3.4
+        version: 0.3.4
+      ts-jest:
+        specifier: ^29.2.5
+        version: 29.2.5(@babel/core@7.26.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.26.0))(jest@29.7.0(@types/node@22.9.0))(typescript@5.6.3)
+      typescript:
+        specifier: ^5.6.3
+        version: 5.6.3
 
 packages:
 
@@ -2544,8 +2544,8 @@ packages:
       svelte: ^4.0.0 || ^5.0.0-next.0
       typescript: '>=5.0.0'
 
-  svelte@5.1.10:
-    resolution: {integrity: sha512-lDR04z/5taV2qhqYt7UXQ3sVuv/FVfbHz4UBQpYP9Xlcv2OV0rw74hkZ7kbdZr3UKLgGdIGxG2UBxtRmgzB2Cg==}
+  svelte@5.1.11:
+    resolution: {integrity: sha512-XpPcUBKCg2c+L0nDTkv0ekc8LOHMzN328MNOeAHt4sRcX5AROU9tkqwL35VvE6srt8RpmnzsXBGDwyRB5TSbuw==}
     engines: {node: '>=18'}
 
   tailwind-merge@2.5.4:
@@ -3339,13 +3339,13 @@ snapshots:
     dependencies:
       '@sinonjs/commons': 3.0.1
 
-  '@sveltejs/adapter-static@3.0.6(@sveltejs/kit@2.7.7(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.1.10)(vite@5.4.10(@types/node@22.9.0)))(svelte@5.1.10)(vite@5.4.10(@types/node@22.9.0)))':
+  '@sveltejs/adapter-static@3.0.6(@sveltejs/kit@2.7.7(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.1.11)(vite@5.4.10(@types/node@22.9.0)))(svelte@5.1.11)(vite@5.4.10(@types/node@22.9.0)))':
     dependencies:
-      '@sveltejs/kit': 2.7.7(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.1.10)(vite@5.4.10(@types/node@22.9.0)))(svelte@5.1.10)(vite@5.4.10(@types/node@22.9.0))
+      '@sveltejs/kit': 2.7.7(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.1.11)(vite@5.4.10(@types/node@22.9.0)))(svelte@5.1.11)(vite@5.4.10(@types/node@22.9.0))
 
-  '@sveltejs/kit@2.7.7(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.1.10)(vite@5.4.10(@types/node@22.9.0)))(svelte@5.1.10)(vite@5.4.10(@types/node@22.9.0))':
+  '@sveltejs/kit@2.7.7(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.1.11)(vite@5.4.10(@types/node@22.9.0)))(svelte@5.1.11)(vite@5.4.10(@types/node@22.9.0))':
     dependencies:
-      '@sveltejs/vite-plugin-svelte': 4.0.0(svelte@5.1.10)(vite@5.4.10(@types/node@22.9.0))
+      '@sveltejs/vite-plugin-svelte': 4.0.0(svelte@5.1.11)(vite@5.4.10(@types/node@22.9.0))
       '@types/cookie': 0.6.0
       cookie: 0.6.0
       devalue: 5.1.1
@@ -3357,27 +3357,27 @@ snapshots:
       sade: 1.8.1
       set-cookie-parser: 2.7.1
       sirv: 3.0.0
-      svelte: 5.1.10
+      svelte: 5.1.11
       tiny-glob: 0.2.9
       vite: 5.4.10(@types/node@22.9.0)
 
-  '@sveltejs/vite-plugin-svelte-inspector@3.0.0(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.1.10)(vite@5.4.10(@types/node@22.9.0)))(svelte@5.1.10)(vite@5.4.10(@types/node@22.9.0))':
+  '@sveltejs/vite-plugin-svelte-inspector@3.0.0(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.1.11)(vite@5.4.10(@types/node@22.9.0)))(svelte@5.1.11)(vite@5.4.10(@types/node@22.9.0))':
     dependencies:
-      '@sveltejs/vite-plugin-svelte': 4.0.0(svelte@5.1.10)(vite@5.4.10(@types/node@22.9.0))
+      '@sveltejs/vite-plugin-svelte': 4.0.0(svelte@5.1.11)(vite@5.4.10(@types/node@22.9.0))
       debug: 4.3.7
-      svelte: 5.1.10
+      svelte: 5.1.11
       vite: 5.4.10(@types/node@22.9.0)
     transitivePeerDependencies:
       - supports-color
 
-  '@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.1.10)(vite@5.4.10(@types/node@22.9.0))':
+  '@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.1.11)(vite@5.4.10(@types/node@22.9.0))':
     dependencies:
-      '@sveltejs/vite-plugin-svelte-inspector': 3.0.0(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.1.10)(vite@5.4.10(@types/node@22.9.0)))(svelte@5.1.10)(vite@5.4.10(@types/node@22.9.0))
+      '@sveltejs/vite-plugin-svelte-inspector': 3.0.0(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.1.11)(vite@5.4.10(@types/node@22.9.0)))(svelte@5.1.11)(vite@5.4.10(@types/node@22.9.0))
       debug: 4.3.7
       deepmerge: 4.3.1
       kleur: 4.1.5
       magic-string: 0.30.12
-      svelte: 5.1.10
+      svelte: 5.1.11
       vite: 5.4.10(@types/node@22.9.0)
       vitefu: 1.0.3(vite@5.4.10(@types/node@22.9.0))
     transitivePeerDependencies:
@@ -5061,10 +5061,10 @@ snapshots:
       tar-fs: 2.1.1
       tunnel-agent: 0.6.0
 
-  prettier-plugin-svelte@3.2.7(prettier@3.3.3)(svelte@5.1.10):
+  prettier-plugin-svelte@3.2.7(prettier@3.3.3)(svelte@5.1.11):
     dependencies:
       prettier: 3.3.3
-      svelte: 5.1.10
+      svelte: 5.1.11
 
   prettier@3.3.3: {}
 
@@ -5447,19 +5447,19 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
-  svelte-check@4.0.5(picomatch@4.0.2)(svelte@5.1.10)(typescript@5.6.3):
+  svelte-check@4.0.5(picomatch@4.0.2)(svelte@5.1.11)(typescript@5.6.3):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.25
       chokidar: 4.0.1
       fdir: 6.4.2(picomatch@4.0.2)
       picocolors: 1.1.1
       sade: 1.8.1
-      svelte: 5.1.10
+      svelte: 5.1.11
       typescript: 5.6.3
     transitivePeerDependencies:
       - picomatch
 
-  svelte@5.1.10:
+  svelte@5.1.11:
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@jridgewell/sourcemap-codec': 1.5.0
