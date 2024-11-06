@@ -4,6 +4,6 @@ import { baseApi } from './baseApi';
 import { gitHubService } from './gitHubService';
 import { imageLoader } from './imageLoader';
 import { myListMovieIdManager } from './myListMovieIdManager';
-import { subTextDataAccess } from './subTextDataAccess';
+import { subTextApi } from './subTextApi';
 
-export const gateway = new Gateway(baseApi, showNRecentMovies, searchNRecentMovies, subTextDataAccess, gitHubService, myListMovieIdManager, imageLoader);
+export const gateway = new Gateway(baseApi, showNRecentMovies, searchNRecentMovies, subTextApi, gitHubService, myListMovieIdManager, imageLoader);

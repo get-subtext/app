@@ -58,7 +58,7 @@ export interface SubtitleFile {
   subtitles: string[];
 }
 
-export interface SubTextDataAccess {
+export interface SubTextApi {
   queryMovies: (pageNumber: number) => Promise<MoviePage | null>;
   getMovie: (imdbId: string) => Promise<Movie | null>;
   getPoster: (imdbId: string, posterId: string) => Promise<Poster | null>;

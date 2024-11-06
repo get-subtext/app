@@ -1,6 +1,6 @@
-import type * as T from './SubTextDataAccess.types';
+import type * as T from './SubTextApi.types';
 
-export class SubTextDataAccess implements T.SubTextDataAccess {
+export class SubTextApi implements T.SubTextApi {
   public constructor(
     private readonly apiUrlBase: string,
     private readonly fetch: (input: string | URL | globalThis.Request, init?: RequestInit) => Promise<Response>

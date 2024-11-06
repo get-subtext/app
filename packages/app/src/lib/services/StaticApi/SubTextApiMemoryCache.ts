@@ -1,14 +1,14 @@
+import type * as T from '@get-subtext/lib.api.subtext';
 import { isNil } from 'lodash-es';
-import type * as T from './MovieDataAccess.types';
 
-export class MovieDataAccessMemoryCache implements T.MovieDataAccess {
+export class SubTextApiMemoryCache implements T.SubTextApi {
   private releaseDates: Record<number, T.MoviePage | null> = {};
   private movies: Record<string, T.Movie | null> = {};
   private posters: Record<string, T.Poster | null> = {};
   private subtitles: Record<string, T.SubtitleFile | null> = {};
   private subtitleFiles: Record<string, string | null> = {};
 
-  public constructor(private readonly instance: T.MovieDataAccess) {}
+  public constructor(private readonly instance: T.SubTextApi) {}
 
   public async queryMovies(pageNumber: number): Promise<T.MoviePage | null> {
     if (isNil(this.releaseDates[pageNumber])) {

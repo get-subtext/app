@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@get-subtext/lib.data-access.subtext": ["packages.data-access/data-access.subtext/src"],
+      "@get-subtext/lib.api.subtext": ["packages.api/api.subtext/src"],
       "@get-subtext/lib.subtitles": ["packages.subtitles/subtitles/src"],
       "@get-subtext/lib.subtitles.utils": ["packages.subtitles/subtitles.utils/src"],
       "app": ["packages/app/src"]
