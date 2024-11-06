@@ -1,10 +1,10 @@
 <script lang="ts">
   import { base } from '$app/paths';
-  import Alert from '$lib/ui.components/Alert';
-  import Header, { Mode as HMode } from '$lib/ui.components/Header';
-  import MoviePanel, { type MyListEventDetail, type Movie, Mode as PMode } from '$lib/ui.components/MoviePanel';
-  import TransitionWhenLoaded from '$lib/ui.components/TransitionWhenLoaded';
-  import { homeService } from '$lib/ui.composition/homeService';
+  import Alert from '$lib/components/Alert';
+  import Header, { Mode as HMode } from '$lib/components/Header';
+  import MoviePanel, { type MyListEventDetail, type Movie, Mode as PMode } from '$lib/components/MoviePanel';
+  import TransitionWhenLoaded from '$lib/components/TransitionWhenLoaded';
+  import { homeService } from '$lib/composition/homeService';
   import { findIndex } from 'lodash-es';
   import { onMount, tick } from 'svelte';
 

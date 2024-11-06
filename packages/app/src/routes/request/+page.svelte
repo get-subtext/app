@@ -1,10 +1,10 @@
 <script lang="ts">
-  import Alert from '$lib/ui.components/Alert';
-  import MoviePanel, { type MyListEventDetail, type Movie, Mode as PMode } from '$lib/ui.components/MoviePanel';
-  import { requestService } from '$lib/ui.composition/requestService';
-  import type { SubmitRequestOutput } from '$lib/ui.services/RequestService.types';
-  import ArrowLeftIcon from '$lib/ui.icons/ArrowLeftIcon.svelte';
-  import MagnifyingGlassIcon from '$lib/ui.icons/MagnifyingGlassIcon.svelte';
+  import Alert from '$lib/components/Alert';
+  import MoviePanel, { type MyListEventDetail, type Movie, Mode as PMode } from '$lib/components/MoviePanel';
+  import { requestService } from '$lib/composition/requestService';
+  import type { SubmitRequestOutput } from '$lib/services/RequestService.types';
+  import ArrowLeftIcon from '$lib/icons/ArrowLeftIcon.svelte';
+  import MagnifyingGlassIcon from '$lib/icons/MagnifyingGlassIcon.svelte';
   import { onMount } from 'svelte';
   import { writable } from 'svelte/store';
 

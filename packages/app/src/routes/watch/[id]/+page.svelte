@@ -1,14 +1,14 @@
 <script lang="ts">
   import { page } from '$app/stores';
-  import { FontSizeEnum } from '$lib/isomorphic.types/FontSizeEnum';
-  import { SubtitleStream } from '$lib/isomorphic.services/SubtitleStream';
-  import { SubtitleStreamStateEnum } from '$lib/isomorphic.types/SubtitleStreamStateEnum';
-  import { formatMsAsTime } from '$lib/isomorphic.utils/formatMsAsTime';
-  import BottomBar from '$lib/ui.components/BottomBar';
-  import type { ProgressEventDetail } from '$lib/ui.components/BottomBar/types';
-  import Overlay from '$lib/ui.components/Overlay';
-  import TopBar from '$lib/ui.components/TopBar';
-  import { watchService } from '$lib/ui.composition/watchService';
+  import { FontSizeEnum } from '$lib/types/FontSizeEnum';
+  import { SubtitleStream } from '$lib/services/SubtitleStream';
+  import { SubtitleStreamStateEnum } from '$lib/types/SubtitleStreamStateEnum';
+  import { formatMsAsTime } from '$lib/utils/format';
+  import BottomBar from '$lib/components/BottomBar';
+  import type { ProgressEventDetail } from '$lib/components/BottomBar/types';
+  import Overlay from '$lib/components/Overlay';
+  import TopBar from '$lib/components/TopBar';
+  import { watchService } from '$lib/composition/watchService';
   import { onMount } from 'svelte';
   import { fade } from 'svelte/transition';
 

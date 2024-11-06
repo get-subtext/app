@@ -1,11 +1,11 @@
 <script lang="ts">
   import { base } from '$app/paths';
-  import Alert from '$lib/ui.components/Alert';
-  import MoviePanel, { type MyListEventDetail, type Movie, Mode as PMode } from '$lib/ui.components/MoviePanel';
-  import TransitionWhenLoaded from '$lib/ui.components/TransitionWhenLoaded';
-  import { searchService } from '$lib/ui.composition/searchService';
-  import ArrowLeftIcon from '$lib/ui.icons/ArrowLeftIcon.svelte';
-  import MagnifyingGlassIcon from '$lib/ui.icons/MagnifyingGlassIcon.svelte';
+  import Alert from '$lib/components/Alert';
+  import MoviePanel, { type MyListEventDetail, type Movie, Mode as PMode } from '$lib/components/MoviePanel';
+  import TransitionWhenLoaded from '$lib/components/TransitionWhenLoaded';
+  import { searchService } from '$lib/composition/searchService';
+  import ArrowLeftIcon from '$lib/icons/ArrowLeftIcon.svelte';
+  import MagnifyingGlassIcon from '$lib/icons/MagnifyingGlassIcon.svelte';
   import { findIndex, debounce } from 'lodash-es';
   import { onMount } from 'svelte';
   import { fade } from 'svelte/transition';
