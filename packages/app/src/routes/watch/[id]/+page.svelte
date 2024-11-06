@@ -2,7 +2,7 @@
   import { page } from '$app/stores';
   import { FontSizeEnum } from '$lib/types/FontSizeEnum';
   import { SubtitleStreamStateEnum } from '$lib/types/SubtitleStreamStateEnum';
-  import { formatMsAsTime } from '$lib/utils/format';
+  import { formatMsAsTime } from '@get-subtext/lib.subtitles.utils';
   import BottomBar from '$lib/components/BottomBar';
   import type { ProgressEventDetail } from '$lib/components/BottomBar/types';
   import Overlay from '$lib/components/Overlay';

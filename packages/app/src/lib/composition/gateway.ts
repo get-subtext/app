@@ -1,5 +1,5 @@
-import { searchNRecentMovies, showNRecentMovies } from '$lib/constants/movies';
 import { Gateway } from '$lib/services/Gateway/Gateway';
+import { searchNRecentMovies, showNRecentMovies } from 'app/lib/composition/movies';
 import { baseApi } from './baseApi';
 import { gitHubService } from './gitHubService';
 import { imageLoader } from './imageLoader';

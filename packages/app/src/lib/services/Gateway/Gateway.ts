@@ -1,5 +1,5 @@
-import { toSubtitles } from '$lib/utils/toSubtitles';
 import type { SubTextDataAccess } from '@get-subtext/lib.data-access.subtext';
+import { toSubtitles } from '@get-subtext/lib.subtitles.utils';
 import Fuse from 'fuse.js';
 import { compact, includes, map, orderBy, uniq } from 'lodash-es';
 import type { ImageLoader } from '../ImageLoader/ImageLoader';
