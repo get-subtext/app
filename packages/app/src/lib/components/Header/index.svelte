@@ -29,11 +29,11 @@
     </div>
     <div class="flex space-x-4">
       <a href={`${base}/request`} class="flex items-center">
-        <FilmIcon class="text-white size-5" />
+        <FilmIcon class="text-white size-5 mr-1" />
         <p class="text-white text-sm hidden sm:inline">Request</p>
       </a>
       <a href={`${base}/search`} class="flex items-center">
-        <MagnifyingGlassIcon class="text-white size-5" />
+        <MagnifyingGlassIcon class="text-white size-5 mr-1" />
         <p class="text-white text-sm hidden sm:inline">Search</p>
       </a>
     </div>
