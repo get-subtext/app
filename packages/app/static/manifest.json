@@ -3,7 +3,7 @@
   "name": "SubText",
   "short_name": "SubText",
   "description": "SubText provides a way for hearing impaired people to look at subtitles whilst in a movie theatre",
-  "start_url": "/subtext",
+  "start_url": "/app",
   "display": "fullscreen",
   "background_color": "#000000",
   "theme_color": "#000000",
