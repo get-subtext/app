@@ -1,14 +1,14 @@
 import { isNil } from 'lodash-es';
-import type * as T from './StaticDataAccess.types';
+import type * as T from './MovieDataAccess.types';
 
-export class ApiMemoryCache implements T.Api {
+export class MovieDataAccessMemoryCache implements T.MovieDataAccess {
   private releaseDates: Record<number, T.MoviePage | null> = {};
   private movies: Record<string, T.Movie | null> = {};
   private posters: Record<string, T.Poster | null> = {};
   private subtitles: Record<string, T.SubtitleFile | null> = {};
   private subtitleFiles: Record<string, string | null> = {};
 
-  public constructor(private readonly instance: T.Api) {}
+  public constructor(private readonly instance: T.MovieDataAccess) {}
 
   public async queryMovies(pageNumber: number): Promise<T.MoviePage | null> {
     if (isNil(this.releaseDates[pageNumber])) {
@@ -35,11 +35,11 @@ export class ApiMemoryCache implements T.Api {
     return this.posters[key];
   }
 
-  public async getSubtitleFile(imdbId: string, subtitleId: string): Promise<T.SubtitleFile | null> {
-    if (isNil(this.subtitles[subtitleId])) {
-      this.subtitles[subtitleId] = await this.instance.getSubtitleFile(imdbId, subtitleId);
+  public async getSubtitleFile(imdbId: string, subtitleFileId: string): Promise<T.SubtitleFile | null> {
+    if (isNil(this.subtitles[subtitleFileId])) {
+      this.subtitles[subtitleFileId] = await this.instance.getSubtitleFile(imdbId, subtitleFileId);
     }
 
-    return this.subtitles[subtitleId];
+    return this.subtitles[subtitleFileId];
   }
 }

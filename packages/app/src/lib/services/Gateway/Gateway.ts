@@ -4,7 +4,7 @@ import { compact, includes, map, orderBy, uniq } from 'lodash-es';
 import type { ImageLoader } from '../ImageLoader/ImageLoader';
 import type { MyListMovieIdManager } from '../MyListMovieIdManager/MyListMovieIdManager';
 import type { GitHubService } from '../RequestService/RequestServiceGitHub';
-import type { Api } from '../StaticDataAccess/StaticDataAccess.types';
+import type { MovieDataAccess } from '../StaticDataAccess/MovieDataAccess.types';
 import type * as T from './Gateway.types';
 
 export class Gateway implements T.Gateway {
@@ -14,7 +14,7 @@ export class Gateway implements T.Gateway {
     private readonly baseUrl: string,
     private readonly showNRecentMovies: number,
     private readonly searchNRecentMovies: number,
-    private readonly api: Api,
+    private readonly api: MovieDataAccess,
     private readonly gitHubService: GitHubService,
     private readonly myListMovieIdManager: MyListMovieIdManager,
     private readonly imageLoader: ImageLoader

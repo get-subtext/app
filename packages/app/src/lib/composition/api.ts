@@ -1,6 +1,6 @@
-import { ApiFetch } from '$lib/services/StaticDataAccess/StaticDataAccessFetch';
-import { ApiMemoryCache } from '$lib/services/StaticDataAccess/StaticDataAccessMemoryCache';
+import { MovieDataAccessFetch } from '$lib/services/StaticDataAccess/MovieDataAccessFetch';
+import { MovieDataAccessMemoryCache } from '$lib/services/StaticDataAccess/MovieDataAccessMemoryCache';
 import { baseApi } from './baseApi';
 
-export const apiFetch = new ApiFetch(baseApi);
-export const api = new ApiMemoryCache(apiFetch);
+export const apiFetch = new MovieDataAccessFetch(baseApi);
+export const api = new MovieDataAccessMemoryCache(apiFetch);

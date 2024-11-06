@@ -1,6 +1,6 @@
-import type * as T from './StaticDataAccess.types';
+import type * as T from './MovieDataAccess.types';
 
-export class ApiFetch implements T.Api {
+export class MovieDataAccessFetch implements T.MovieDataAccess {
   public constructor(private readonly baseUrl: string) {}
 
   public async queryMovies(pageNumber: number): Promise<T.MoviePage | null> {
@@ -27,8 +27,8 @@ export class ApiFetch implements T.Api {
     return data;
   }
 
-  public async getSubtitleFile(imdbId: string, subtitleId: string): Promise<T.SubtitleFile | null> {
-    const url = `${this.baseUrl}/movies/${imdbId}/subtitle-files/${subtitleId}/index.json`;
+  public async getSubtitleFile(imdbId: string, subtitleFileId: string): Promise<T.SubtitleFile | null> {
+    const url = `${this.baseUrl}/movies/${imdbId}/subtitle-files/${subtitleFileId}/index.json`;
     const res = await fetch(url);
     if (res.status === 404) return null;
     const data: T.SubtitleFile = await res.json();
