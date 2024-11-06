@@ -1,15 +1,10 @@
-import { Stopwatch } from '../StopWatch/StopWatch';
+import { Stopwatch } from './StopWatch';
+import type * as T from './SubtitleStream.types';
 
-export interface SubtitleBlock {
-  start: number;
-  end: number;
-  text: string;
-}
-
-export class SubtitleStream {
+export class SubtitleStream implements T.SubtitleStream {
   private stopwatch = new Stopwatch();
 
-  public constructor(private readonly subtitles: SubtitleBlock[]) {}
+  public constructor(private readonly subtitleBlocks: T.SubtitleBlock[]) {}
 
   public start() {
     this.stopwatch.start();
@@ -27,8 +22,8 @@ export class SubtitleStream {
 
   public skipToNext() {
     const elapsedTime = this.stopwatch.getElapsedTime();
-    for (let i = 0; i < this.subtitles.length; i++) {
-      const subtitle = this.subtitles[i];
+    for (let i = 0; i < this.subtitleBlocks.length; i++) {
+      const subtitle = this.subtitleBlocks[i];
       if (subtitle.start > elapsedTime) {
         this.stopwatch.resetTo(subtitle.start);
         return;
@@ -40,8 +35,8 @@ export class SubtitleStream {
 
   public skipToPrevious() {
     const elapsedTime = this.stopwatch.getElapsedTime();
-    for (let i = this.subtitles.length - 1; i >= 0; i--) {
-      const subtitle = this.subtitles[i];
+    for (let i = this.subtitleBlocks.length - 1; i >= 0; i--) {
+      const subtitle = this.subtitleBlocks[i];
       if (subtitle.end < elapsedTime) {
         this.stopwatch.resetTo(subtitle.start);
         return;
@@ -69,9 +64,9 @@ export class SubtitleStream {
   }
 
   private getCurrentSubtitle(elapsedTime: number) {
-    for (let i = 0; i < this.subtitles.length; i++) {
-      const subtitle = this.subtitles[i];
-      if (elapsedTime >= subtitle.start && elapsedTime <= subtitle.end) return this.subtitles[i].text;
+    for (let i = 0; i < this.subtitleBlocks.length; i++) {
+      const subtitle = this.subtitleBlocks[i];
+      if (elapsedTime >= subtitle.start && elapsedTime <= subtitle.end) return this.subtitleBlocks[i].text;
     }
 
     return '';
@@ -85,7 +80,7 @@ export class SubtitleStream {
 
   private getRunningTime() {
     const oneMinute = 1000 * 60 * 1;
-    const lastSubtitleEnd = this.subtitles[this.subtitles.length - 1].end;
+    const lastSubtitleEnd = this.subtitleBlocks[this.subtitleBlocks.length - 1].end;
     const runningTime = lastSubtitleEnd + oneMinute;
     return runningTime;
   }

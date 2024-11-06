@@ -1,0 +1,20 @@
+{
+  "name": "@get-subtext/lib.subtitles",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "jest --verbose",
+    "clean": "shx rm -rf ./coverage",
+    "test": "jest --verbose"
+  },
+  "dependencies": {
+    "@types/node": "^22.9.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "jest": "^29.7.0",
+    "shx": "^0.3.4",
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.6.3"
+  }
+}

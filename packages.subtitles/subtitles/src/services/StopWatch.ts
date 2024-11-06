@@ -1,4 +1,6 @@
-export class Stopwatch {
+import type * as T from './StopWatch.types';
+
+export class Stopwatch implements T.Stopwatch {
   private elapsedTime = 0;
   private startTimestamp: number | null = null;
 

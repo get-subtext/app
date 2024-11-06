@@ -3,6 +3,7 @@
     "baseUrl": ".",
     "paths": {
       "@get-subtext/lib.data-access.subtext": ["packages.data-access/data-access.subtext/src"],
+      "@get-subtext/lib.subtitles": ["packages.subtitles/subtitles/src"],
       "app": ["packages/app/src"]
     }
   }

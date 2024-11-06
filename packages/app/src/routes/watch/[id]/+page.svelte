@@ -1,7 +1,6 @@
 <script lang="ts">
   import { page } from '$app/stores';
   import { FontSizeEnum } from '$lib/types/FontSizeEnum';
-  import { SubtitleStream } from '$lib/services/SubtitleStream/SubtitleStream';
   import { SubtitleStreamStateEnum } from '$lib/types/SubtitleStreamStateEnum';
   import { formatMsAsTime } from '$lib/utils/format';
   import BottomBar from '$lib/components/BottomBar';
@@ -9,6 +8,7 @@
   import Overlay from '$lib/components/Overlay';
   import TopBar from '$lib/components/TopBar';
   import { watchService } from '$lib/composition/watchService';
+  import { SubtitleStreamFactory, type SubtitleStream } from '@get-subtext/lib.subtitles';
   import { onMount } from 'svelte';
   import { fade } from 'svelte/transition';
 
@@ -80,7 +80,7 @@
     const loadRes = await watchService.load($page.params.id);
     console.log(loadRes);
     title = loadRes.movie.title;
-    subtitleStream = new SubtitleStream(loadRes.movie.subtitleFiles[0].subtitles);
+    subtitleStream = SubtitleStreamFactory.create({ subtitleBlocks: loadRes.movie.subtitleFiles[0].subtitles });
     showControls();
     scheduleShowOverlay();
     setInterval(() => handleInterval(), 100);
