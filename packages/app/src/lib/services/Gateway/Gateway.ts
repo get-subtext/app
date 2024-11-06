@@ -1,10 +1,10 @@
 import { toSubtitles } from '$lib/utils/toSubtitles';
+import type { SubTextDataAccess } from '@get-subtext/lib.data-access.subtext';
 import Fuse from 'fuse.js';
 import { compact, includes, map, orderBy, uniq } from 'lodash-es';
 import type { ImageLoader } from '../ImageLoader/ImageLoader';
 import type { MyListMovieIdManager } from '../MyListMovieIdManager/MyListMovieIdManager';
 import type { GitHubService } from '../RequestService/RequestServiceGitHub';
-import type { MovieDataAccess } from '../StaticDataAccess/MovieDataAccess.types';
 import type * as T from './Gateway.types';
 
 export class Gateway implements T.Gateway {
@@ -14,7 +14,7 @@ export class Gateway implements T.Gateway {
     private readonly baseUrl: string,
     private readonly showNRecentMovies: number,
     private readonly searchNRecentMovies: number,
-    private readonly api: MovieDataAccess,
+    private readonly subTextDataAccess: SubTextDataAccess,
     private readonly gitHubService: GitHubService,
     private readonly myListMovieIdManager: MyListMovieIdManager,
     private readonly imageLoader: ImageLoader
@@ -63,7 +63,7 @@ export class Gateway implements T.Gateway {
   }
 
   public async getMovieToWatch(imdbId: string): Promise<T.MovieWatch | null> {
-    const movie = await this.api.getMovie(imdbId);
+    const movie = await this.subTextDataAccess.getMovie(imdbId);
     if (movie === null || !movie.isAvailable) return null;
 
     const subtitleFilesRaw = await Promise.all(map(movie.subtitleFileIds, (sid) => this.getSubtitleFiles(imdbId, sid)));
@@ -83,7 +83,7 @@ export class Gateway implements T.Gateway {
 
     let idx = 1;
     while (true) {
-      const page = await this.api.queryMovies(idx);
+      const page = await this.subTextDataAccess.queryMovies(idx);
       if (page === null) break;
       for (let i = 0; i < page.imdbIds.length; i++) {
         output.push(page.imdbIds[i]);
@@ -98,7 +98,7 @@ export class Gateway implements T.Gateway {
   }
 
   private async doGetMovie(imdbId: string): Promise<T.MovieView | T.MovieView | null> {
-    const movie = await this.api.getMovie(imdbId);
+    const movie = await this.subTextDataAccess.getMovie(imdbId);
     console.log(movie);
 
     if (movie === null || !movie.isAvailable) return null;
@@ -115,7 +115,7 @@ export class Gateway implements T.Gateway {
   }
 
   private async getSubtitleFiles(imdbId: string, subtitleId: string) {
-    const subtitleFile = await this.api.getSubtitleFile(imdbId, subtitleId);
+    const subtitleFile = await this.subTextDataAccess.getSubtitleFile(imdbId, subtitleId);
     if (subtitleFile === null) return null;
     const subtitles = toSubtitles(subtitleFile.subtitles);
     return { subtitleId: subtitleFile.subtitleFileId, source: subtitleFile.source.origin, author: subtitleFile.source.author, subtitles };
@@ -123,7 +123,7 @@ export class Gateway implements T.Gateway {
 
   private async getPosterUrl(imdbId: string, posterIds: string[]) {
     if (posterIds.length === 0) return null;
-    const poster = await this.api.getPoster(imdbId, posterIds[0]);
+    const poster = await this.subTextDataAccess.getPoster(imdbId, posterIds[0]);
     if (poster === null) return null;
     console.log(`${this.baseUrl}/movies/${imdbId}/posters/${posterIds[0]}/${poster.fileName}`);
     return `${this.baseUrl}/movies/${imdbId}/posters/${posterIds[0]}/${poster.fileName}`;

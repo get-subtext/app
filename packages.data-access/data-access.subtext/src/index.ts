@@ -7,12 +7,13 @@ export interface SubTextDataAccessOptions {
   config: {
     apiUrlBase: string;
   };
+  fetch: (input: string | URL | globalThis.Request, init?: RequestInit) => Promise<Response>;
 }
 
 export class SubTextDataAccessFactory {
   private constructor() {}
 
-  public static create({ config }: SubTextDataAccessOptions): SubTextDataAccess {
-    return new SubTextDataAccessImpl(config.apiUrlBase);
+  public static create({ config, fetch }: SubTextDataAccessOptions): SubTextDataAccess {
+    return new SubTextDataAccessImpl(config.apiUrlBase, fetch);
   }
 }

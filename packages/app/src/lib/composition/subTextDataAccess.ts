@@ -9,5 +9,5 @@ import { MovieDataAccessMemoryCache } from '$lib/services/StaticDataAccess/Movie
 import { SubTextDataAccessFactory } from '@get-subtext/lib.data-access.subtext';
 import { baseApi } from './baseApi';
 
-export const apiFetch = SubTextDataAccessFactory.create({ config: { apiUrlBase: baseApi } });
-export const api = new MovieDataAccessMemoryCache(apiFetch);
+export const subTextDataAccessStd = SubTextDataAccessFactory.create({ config: { apiUrlBase: baseApi }, fetch });
+export const subTextDataAccess = new MovieDataAccessMemoryCache(subTextDataAccessStd);
