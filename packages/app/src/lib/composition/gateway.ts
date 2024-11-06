@@ -4,6 +4,7 @@ import { SubTextDataAccessFactory } from '@get-subtext/lib.data-access.subtext';
 import { searchNRecentMovies, showNRecentMovies } from 'app/lib/composition/movies';
 import { baseApi } from './baseApi';
 import { gitHubService } from './gitHubService';
+import { imageLoader } from './imageLoader';
 import { myListMovieIdManager } from './myListMovieIdManager';
 import { subTextApi } from './subTextApi';
 
@@ -22,4 +23,13 @@ const subTextDataAccess = SubTextDataAccessFactory.create({
   myListService,
   subTextApi,
 });
-export const gateway = new Gateway(subTextDataAccess, gitHubService, myListMovieIdManager);
+export const gateway = new Gateway(
+  baseApi,
+  showNRecentMovies,
+  searchNRecentMovies,
+  subTextApi,
+  subTextDataAccess,
+  gitHubService,
+  myListMovieIdManager,
+  imageLoader
+);
