@@ -15,7 +15,7 @@ export class GitHubService {
       lines.push('');
       lines.push(`requestId: ${requestId}`);
       lines.push(`userId: ${userId}`);
-      lines.push(`type: REQUEST_MOVIE`);
+      lines.push(`type: SYNC_MOVIE`);
       lines.push(`imdbId: ${imdbId}`);
 
       const issueData = { title: imdbId, body: join(lines, '\n'), labels: ['subtext-bot'] };
