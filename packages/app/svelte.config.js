@@ -12,8 +12,9 @@ const config = {
     // If your environment is not supported, or you settled on a specific environment, switch out the adapter.
     // See https://kit.svelte.dev/docs/adapters for more information about adapters.
     adapter: adapter({ fallback: '404.html' }),
-    paths: {
-      base: process.argv.includes('dev') ? '' : process.env.BASE_PATH,
+    paths: { base: process.argv.includes('dev') ? '' : process.env.BASE_PATH },
+    alias: {
+      '@get-subtext/lib.data-access.subtext': '../../packages.data-access/data-access.subtext/src',
     },
   },
 };

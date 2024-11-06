@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@get-subtext/lib.data-access.subtext": ["packages.data-access/data-access.subtext/src"],
+      "app": ["packages/app/src"]
+    }
+  }
+}
