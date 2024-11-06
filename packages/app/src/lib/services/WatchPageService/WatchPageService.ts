@@ -1,7 +1,7 @@
-import type { Gateway } from './Gateway.types';
-import type * as T from './WatchService.types';
+import type { Gateway } from '../Gateway/Gateway.types';
+import type * as T from './WatchPageService.types';
 
-export class WatchService {
+export class WatchPageService {
   public constructor(private readonly gateway: Gateway) {}
 
   public async load(imdbId: string): Promise<T.LoadOutput> {

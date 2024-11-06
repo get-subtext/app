@@ -1,5 +1,5 @@
 import { isNil } from 'lodash-es';
-import type * as T from './Api.types';
+import type * as T from './StaticDataAccess.types';
 
 export class ApiMemoryCache implements T.Api {
   private releaseDates: Record<number, T.MoviePage | null> = {};

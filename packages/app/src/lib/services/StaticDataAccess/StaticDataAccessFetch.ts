@@ -1,4 +1,4 @@
-import type * as T from './Api.types';
+import type * as T from './StaticDataAccess.types';
 
 export class ApiFetch implements T.Api {
   public constructor(private readonly baseUrl: string) {}

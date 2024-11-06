@@ -1,5 +1,5 @@
-import { HomeService } from '$lib/services/HomeService';
+import { HomePageService } from '$lib/services/HomePageService/HomePageService';
 import { gateway } from './gateway';
 import { userIdService } from './userIdService';
 
-export const homeService = new HomeService(userIdService, gateway);
+export const homeService = new HomePageService(userIdService, gateway);

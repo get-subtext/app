@@ -1,6 +1,6 @@
-import type { BlobStore } from './BlobStore.types';
+import type * as T from './BlobStore.types';
 
-export class StorageBlobStore<T> implements BlobStore<T> {
+export class StorageBlobStore<T> implements T.BlobStore<T> {
   public constructor(
     private readonly key: string,
     private readonly storage: Storage

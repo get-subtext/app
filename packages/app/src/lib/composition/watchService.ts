@@ -1,4 +1,4 @@
-import { WatchService } from '$lib/services/WatchService';
+import { WatchPageService } from '$lib/services/WatchPageService/WatchPageService';
 import { gateway } from './gateway';
 
-export const watchService = new WatchService(gateway);
+export const watchService = new WatchPageService(gateway);

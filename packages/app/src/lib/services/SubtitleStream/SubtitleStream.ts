@@ -1,4 +1,4 @@
-import { Stopwatch } from './StopWatch';
+import { Stopwatch } from '../StopWatch/StopWatch';
 
 export interface SubtitleBlock {
   start: number;

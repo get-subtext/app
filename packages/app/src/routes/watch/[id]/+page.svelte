@@ -1,7 +1,7 @@
 <script lang="ts">
   import { page } from '$app/stores';
   import { FontSizeEnum } from '$lib/types/FontSizeEnum';
-  import { SubtitleStream } from '$lib/services/SubtitleStream';
+  import { SubtitleStream } from '$lib/services/SubtitleStream/SubtitleStream';
   import { SubtitleStreamStateEnum } from '$lib/types/SubtitleStreamStateEnum';
   import { formatMsAsTime } from '$lib/utils/format';
   import BottomBar from '$lib/components/BottomBar';

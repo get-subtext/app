@@ -1,4 +1,4 @@
-import type { BlobStore } from '$lib/services/BlobStore.types';
+import type { BlobStore } from '$lib/services/BlobStore/BlobStore.types';
 
 export class MyListMovieIdManager {
   constructor(private readonly blobStore: BlobStore<string[]>) {}

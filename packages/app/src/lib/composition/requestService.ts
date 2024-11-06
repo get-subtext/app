@@ -1,4 +1,4 @@
-import { RequestService } from '$lib/services/RequestService';
+import { RequestService } from '$lib/services/RequestService/RequestService';
 import { gateway } from './gateway';
 import { userIdService } from './userIdService';
 

@@ -2,7 +2,7 @@
   import Alert from '$lib/components/Alert';
   import MoviePanel, { type MyListEventDetail, type Movie, Mode as PMode } from '$lib/components/MoviePanel';
   import { requestService } from '$lib/composition/requestService';
-  import type { SubmitRequestOutput } from '$lib/services/RequestService.types';
+  import type { SubmitRequestOutput } from '$lib/services/RequestService/RequestService.types';
   import ArrowLeftIcon from '$lib/icons/ArrowLeftIcon.svelte';
   import MagnifyingGlassIcon from '$lib/icons/MagnifyingGlassIcon.svelte';
   import { onMount } from 'svelte';

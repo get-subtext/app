@@ -1,5 +1,5 @@
-import { SearchService } from '$lib/services/SearchService';
+import { SearchPageService } from '$lib/services/SearchPageService/SearchPageService';
 import { gateway } from './gateway';
 import { userIdService } from './userIdService';
 
-export const searchService = new SearchService(userIdService, gateway);
+export const searchService = new SearchPageService(userIdService, gateway);

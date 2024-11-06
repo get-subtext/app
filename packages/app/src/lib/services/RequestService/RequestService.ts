@@ -1,8 +1,8 @@
 import { isEmpty } from 'lodash-es';
 import { v1 as guid } from 'uuid';
-import type { Gateway } from './Gateway.types';
+import type { Gateway } from '../Gateway/Gateway.types';
+import type { UserIdService } from '../UserIdService/UserIdService';
 import type * as T from './RequestService.types';
-import type { UserIdService } from './UserIdService';
 
 export class RequestService {
   public constructor(

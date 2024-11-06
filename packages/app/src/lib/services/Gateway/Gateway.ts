@@ -1,11 +1,11 @@
 import { toSubtitles } from '$lib/utils/toSubtitles';
 import Fuse from 'fuse.js';
 import { compact, includes, map, orderBy, uniq } from 'lodash-es';
-import type { Api } from './Api.types';
+import type { ImageLoader } from '../ImageLoader/ImageLoader';
+import type { MyListMovieIdManager } from '../MyListMovieIdManager/MyListMovieIdManager';
+import type { GitHubService } from '../RequestService/RequestServiceGitHub';
+import type { Api } from '../StaticDataAccess/StaticDataAccess.types';
 import type * as T from './Gateway.types';
-import type { GitHubService } from './GitHubService';
-import type { ImageLoader } from './ImageLoader';
-import type { MyListMovieIdManager } from './MyListMovieIdManager';
 
 export class Gateway implements T.Gateway {
   private extraImdbIds: string[] = [];

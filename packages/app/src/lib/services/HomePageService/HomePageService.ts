@@ -1,8 +1,8 @@
-import type { Gateway } from './Gateway.types';
-import type * as T from './HomeService.types';
-import type { UserIdService } from './UserIdService';
+import type { Gateway } from '../Gateway/Gateway.types';
+import type { UserIdService } from '../UserIdService/UserIdService';
+import type * as T from './HomePageService.types';
 
-export class HomeService {
+export class HomePageService {
   public constructor(
     private readonly userIdService: UserIdService,
     private readonly gateway: Gateway

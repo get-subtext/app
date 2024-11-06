@@ -1,4 +1,4 @@
-import type { BlobStore } from '$lib/services/BlobStore.types';
+import type { BlobStore } from '$lib/services/BlobStore/BlobStore.types';
 import { isNil } from 'lodash-es';
 import { v1 as guid } from 'uuid';
 
