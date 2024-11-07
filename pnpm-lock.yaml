@@ -84,7 +84,7 @@ importers:
         specifier: ^5.4.10
         version: 5.4.10(@types/node@22.9.0)
 
-  packages.lib.gateway/gateway.services:
+  packages.lib.movie-reader/movie-reader.api.fetch:
     dependencies:
       '@types/node':
         specifier: ^22.9.0
@@ -106,7 +106,7 @@ importers:
         specifier: ^5.6.3
         version: 5.6.3
 
-  packages.lib.gateway/gateway.standard:
+  packages.lib/gateway:
     dependencies:
       '@types/lodash-es':
         specifier: ^4.17.12
@@ -137,17 +137,11 @@ importers:
         specifier: ^5.6.3
         version: 5.6.3
 
-  packages.lib.gateway/gateway.utils:
+  packages.lib/services:
     dependencies:
-      '@types/lodash-es':
-        specifier: ^4.17.12
-        version: 4.17.12
       '@types/node':
         specifier: ^22.9.0
         version: 22.9.0
-      lodash-es:
-        specifier: ^4.17.21
-        version: 4.17.21
     devDependencies:
       '@types/jest':
         specifier: ^29.5.14
@@ -165,11 +159,17 @@ importers:
         specifier: ^5.6.3
         version: 5.6.3
 
-  packages.lib.movie-reader/movie-reader.api.fetch:
+  packages.lib/utils:
     dependencies:
+      '@types/lodash-es':
+        specifier: ^4.17.12
+        version: 4.17.12
       '@types/node':
         specifier: ^22.9.0
         version: 22.9.0
+      lodash-es:
+        specifier: ^4.17.21
+        version: 4.17.21
     devDependencies:
       '@types/jest':
         specifier: ^29.5.14

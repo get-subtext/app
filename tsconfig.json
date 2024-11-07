@@ -2,10 +2,10 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@get-subtext/lib.gateway.services": ["packages.lib.gateway/gateway.services/src"],
-      "@get-subtext/lib.gateway.standard": ["packages.lib.gateway/gateway.standard/src"],
-      "@get-subtext/lib.gateway.utils": ["packages.lib.gateway/gateway.utils/src"],
+      "@get-subtext/lib.gateway": ["packages.lib/gateway/src"],
       "@get-subtext/lib.movie-reader.api.fetch": ["packages.lib.movie-reader/movie-reader.api.fetch/src"],
+      "@get-subtext/lib.services": ["packages.lib/services/src"],
+      "@get-subtext/lib.utils": ["packages.lib/utils/src"],
       "app": ["packages.app/app/src"]
     }
   }

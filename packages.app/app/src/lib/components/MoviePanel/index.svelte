@@ -4,7 +4,7 @@
   import XMarkIcon from '$lib/icons/XMarkIcon.svelte';
   import PlayIcon from '$lib/icons/PlayIcon.svelte';
   import PlusIcon from '$lib/icons/PlusIcon.svelte';
-  import { formatRunTimeMins, formatTextArray, formatRated, formatReleaseYear } from '@get-subtext/lib.gateway.utils';
+  import { formatRunTimeMins, formatTextArray, formatRated, formatReleaseYear } from '@get-subtext/lib.utils';
   import { createEventDispatcher } from 'svelte';
   import * as T from './types';
   import { twMerge } from 'tailwind-merge';

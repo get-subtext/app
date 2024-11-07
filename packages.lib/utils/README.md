@@ -1,3 +1,3 @@
-# @get-subtext/lib.gateway.utils
+# @get-subtext/lib.utils
 
 > A client side library for accessing SubText data.

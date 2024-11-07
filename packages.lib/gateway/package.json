@@ -1,5 +1,5 @@
 {
-  "name": "@get-subtext/lib.gateway.standard",
+  "name": "@get-subtext/lib.gateway",
   "version": "1.0.0",
   "private": true,
   "scripts": {
