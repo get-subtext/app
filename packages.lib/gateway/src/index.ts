@@ -8,7 +8,7 @@ export type * from './services/Gateway.types';
 
 export interface GatewayOptions {
   config: {
-    apiUrlBase: string;
+    movieReaderApiUrlBase: string;
     showNRecentMovies: number;
     searchNRecentMovies: number;
   };
@@ -21,6 +21,6 @@ export class GatewayFactory {
   private constructor() {}
 
   public static create({ config, movieReaderApi, gitHubApi, userSettingsApi }: GatewayOptions): Gateway {
-    return new GatewayImpl(config.apiUrlBase, config.searchNRecentMovies, config.searchNRecentMovies, movieReaderApi, gitHubApi, userSettingsApi);
+    return new GatewayImpl(config.movieReaderApiUrlBase, config.searchNRecentMovies, config.searchNRecentMovies, movieReaderApi, gitHubApi, userSettingsApi);
   }
 }

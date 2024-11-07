@@ -18,16 +18,16 @@ export class Gateway implements T.Gateway {
     private readonly userSettingsApi: UserSettingsApi
   ) {}
 
-  public async getRecentMovies(): Promise<T.MovieView[]> {
+  public async getRecentMovies(): Promise<T.MovieDetails[]> {
     const imdbIds = await this.queryAllMovies(this.showNRecentMovies);
     const movies = await Promise.all(map(imdbIds, (imdbId) => this.getMovie(imdbId)));
     const moviesCompact = compact(movies);
     const moviesSorted = orderBy(moviesCompact, ['releaseDate', 'releaseYear', 'title'], ['desc', 'desc', 'asc']);
-    const output: T.MovieView[] = moviesSorted;
+    const output: T.MovieDetails[] = moviesSorted;
     return output;
   }
 
-  public async searchMovies(query: string): Promise<T.MovieView[]> {
+  public async searchMovies(query: string): Promise<T.MovieDetails[]> {
     const imdbIds = await this.queryAllMovies(this.searchNRecentMovies);
     const movies = await Promise.all(map(imdbIds, (imdbId) => this.getMovie(imdbId)));
     const moviesCompact = compact(movies);
@@ -37,25 +37,25 @@ export class Gateway implements T.Gateway {
     return output;
   }
 
-  public async getMyListMovies(userId: string): Promise<T.MovieView[]> {
+  public async getMyListMovies(): Promise<T.MovieDetails[]> {
     const imdbIds = await this.userSettingsApi.getMyList();
     const movies = await Promise.all(map(imdbIds, (imdbId) => this.getMovie(imdbId)));
     const moviesCompact = compact(movies);
     const moviesSorted = orderBy(moviesCompact, ['releaseDate', 'releaseYear', 'title'], ['desc', 'desc', 'asc']);
-    const output: T.MovieView[] = moviesSorted;
+    const output: T.MovieDetails[] = moviesSorted;
     return output;
   }
 
-  public async addToMyList(userId: string, imdbId: string): Promise<void> {
+  public async addToMyList(imdbId: string): Promise<void> {
     this.extraImdbIds.push(imdbId);
     await this.userSettingsApi.addToMyList(imdbId);
   }
 
-  public async removeFromMyList(userId: string, imdbId: string): Promise<void> {
+  public async removeFromMyList(imdbId: string): Promise<void> {
     await this.userSettingsApi.removeFromMyList(imdbId);
   }
 
-  public async getMovie(imdbId: string): Promise<T.MovieView | null> {
+  public async getMovie(imdbId: string): Promise<T.MovieDetails | null> {
     const movie = await this.doGetMovie(imdbId);
     return movie === null ? null : movie;
   }
@@ -71,7 +71,8 @@ export class Gateway implements T.Gateway {
     return { imdbId, title, runTimeMins, subtitleFiles };
   }
 
-  public async submitMovieRequest(requestId: string, userId: string, imdbId: string) {
+  public async submitMovieRequest(requestId: string, imdbId: string) {
+    const userId = await this.userSettingsApi.getUserId();
     this.extraImdbIds.push(imdbId);
 
     const lines: string[] = [];
@@ -106,7 +107,7 @@ export class Gateway implements T.Gateway {
     return uniq(output);
   }
 
-  private async doGetMovie(imdbId: string): Promise<T.MovieView | T.MovieView | null> {
+  private async doGetMovie(imdbId: string): Promise<T.MovieDetails | T.MovieDetails | null> {
     const movie = await this.movieReaderApi.getMovie(imdbId);
     console.log(movie);
 
@@ -134,5 +135,10 @@ export class Gateway implements T.Gateway {
     const poster = await this.movieReaderApi.getPoster(imdbId, posterIds[0]);
     if (poster === null) return null;
     return `${this.movieReaderApiUrlBase}/movies/${imdbId}/posters/${posterIds[0]}/${poster.fileName}`;
+  }
+
+  private parseImdbIdOrUrl(value: string) {
+    const match = value.match(/tt\d{7,8}/);
+    return match ? match[0] : null;
   }
 }

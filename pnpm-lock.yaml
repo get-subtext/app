@@ -150,11 +150,20 @@ importers:
         specifier: ^5.6.3
         version: 5.6.3
 
-  packages.lib.identity/identity.api:
+  packages.lib.help-desk/help-desk.standard:
     dependencies:
+      '@types/lodash-es':
+        specifier: ^4.17.12
+        version: 4.17.12
       '@types/node':
         specifier: ^22.9.0
         version: 22.9.0
+      lodash-es:
+        specifier: ^4.17.21
+        version: 4.17.21
+      uuid:
+        specifier: ^11.0.2
+        version: 11.0.2
     devDependencies:
       '@types/jest':
         specifier: ^29.5.14

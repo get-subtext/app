@@ -1,4 +1,4 @@
-export interface MovieView {
+export interface MovieDetails {
   imdbId: string;
   title: string;
   releaseDate: string | null;
@@ -35,13 +35,30 @@ export interface SubtitleBlock {
   text: string;
 }
 
+export interface SubmitRequestOutputFoundMovie {
+  imdbId: string;
+  title: string;
+  releaseDate: string | null;
+  releaseYear: string | null;
+  posterUrl: string | null;
+  rated: string | null;
+  genres: string[];
+  directors: string[];
+  writers: string[];
+  actors: string[];
+  runTimeMins: number | null;
+  plot: string | null;
+  subtitleCount: number;
+  isOnMyList: boolean;
+}
+
 export interface Gateway {
-  getRecentMovies: () => Promise<MovieView[]>;
-  searchMovies: (query: string) => Promise<MovieView[]>;
-  getMovie: (imdbId: string) => Promise<MovieView | null>;
+  getRecentMovies: () => Promise<MovieDetails[]>;
+  searchMovies: (query: string) => Promise<MovieDetails[]>;
+  getMovie: (imdbId: string) => Promise<MovieDetails | null>;
   getMovieToWatch: (imdbId: string) => Promise<MovieWatch | null>;
-  getMyListMovies: (userId: string) => Promise<MovieView[]>;
-  addToMyList: (userId: string, imdbId: string) => Promise<void>;
-  removeFromMyList: (userId: string, imdbId: string) => Promise<void>;
-  submitMovieRequest: (requestId: string, userId: string, imdbId: string) => Promise<void>;
+  getMyListMovies: () => Promise<MovieDetails[]>;
+  addToMyList: (imdbId: string) => Promise<void>;
+  removeFromMyList: (imdbId: string) => Promise<void>;
+  submitMovieRequest: (requestId: string, imdbId: string) => Promise<void>;
 }
