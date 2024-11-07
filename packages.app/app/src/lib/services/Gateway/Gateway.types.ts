@@ -43,5 +43,5 @@ export interface Gateway {
   getMyListMovies: (userId: string) => Promise<MovieView[]>;
   addToMyList: (userId: string, imdbId: string) => Promise<void>;
   removeFromMyList: (userId: string, imdbId: string) => Promise<void>;
-  submitMovieRequest: (requestId: string, userId: string, imdbId: string) => Promise<boolean>;
+  submitMovieRequest: (requestId: string, userId: string, imdbId: string) => Promise<void>;
 }

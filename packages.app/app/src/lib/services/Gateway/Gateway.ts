@@ -1,11 +1,10 @@
-import type { SubTextDataAccess } from '@get-subtext/lib.gateway';
-import type { SubTextApi } from '@get-subtext/lib.movie-reader.api.fetch';
+import type { GitHubFetchApi } from '@get-subtext/lib.github.api.fetch';
+import type { MovieReaderApi } from '@get-subtext/lib.movie-reader.api';
 import { toSubtitleBlocks } from '@get-subtext/lib.utils';
 import Fuse from 'fuse.js';
-import { compact, includes, map, orderBy, uniq } from 'lodash-es';
+import { compact, includes, join, map, orderBy, uniq } from 'lodash-es';
 import type { ImageLoader } from '../ImageLoader/ImageLoader';
 import type { MyListMovieIdManager } from '../MyListMovieIdManager/MyListMovieIdManager';
-import type { GitHubService } from '../RequestService/RequestServiceGitHub';
 import type * as T from './Gateway.types';
 
 export class Gateway implements T.Gateway {
@@ -15,9 +14,8 @@ export class Gateway implements T.Gateway {
     private readonly baseUrl: string,
     private readonly showNRecentMovies: number,
     private readonly searchNRecentMovies: number,
-    private readonly subTextApi: SubTextApi,
-    private readonly subTextDataAccess: SubTextDataAccess,
-    private readonly gitHubService: GitHubService,
+    private readonly movieReaderFetchApi: MovieReaderApi,
+    private readonly gitHubFetchApi: GitHubFetchApi,
     private readonly myListMovieIdManager: MyListMovieIdManager,
     private readonly imageLoader: ImageLoader
   ) {}
@@ -65,7 +63,7 @@ export class Gateway implements T.Gateway {
   }
 
   public async getMovieToWatch(imdbId: string): Promise<T.MovieWatch | null> {
-    const movie = await this.subTextApi.getMovie(imdbId);
+    const movie = await this.movieReaderFetchApi.getMovie(imdbId);
     if (movie === null || !movie.isAvailable) return null;
 
     const subtitleFilesRaw = await Promise.all(map(movie.subtitleFileIds, (sid) => this.getSubtitleFiles(imdbId, sid)));
@@ -77,7 +75,18 @@ export class Gateway implements T.Gateway {
 
   public async submitMovieRequest(requestId: string, userId: string, imdbId: string) {
     this.extraImdbIds.push(imdbId);
-    return await this.gitHubService.submitAddMovieRequestIssue(requestId, userId, imdbId);
+
+    const lines: string[] = [];
+    lines.push(':robot: This issue is automated.');
+    lines.push('');
+    lines.push('===');
+    lines.push('');
+    lines.push(`type: SYNC_MOVIE`);
+    lines.push(`requestId: ${requestId}`);
+    lines.push(`imdbId: ${imdbId}`);
+    lines.push(`userId: ${userId}`);
+    const issue = { title: `Sync Movie ${imdbId}`, body: join(lines, '\n'), labels: ['subtext-bot'] };
+    await this.gitHubFetchApi.submitIssue(issue);
   }
 
   private async queryAllMovies(maxMovies: number): Promise<string[]> {
@@ -85,7 +94,7 @@ export class Gateway implements T.Gateway {
 
     let idx = 1;
     while (true) {
-      const page = await this.subTextApi.queryMovies(idx);
+      const page = await this.movieReaderFetchApi.queryMovies(idx);
       if (page === null) break;
       for (let i = 0; i < page.imdbIds.length; i++) {
         output.push(page.imdbIds[i]);
@@ -100,7 +109,7 @@ export class Gateway implements T.Gateway {
   }
 
   private async doGetMovie(imdbId: string): Promise<T.MovieView | T.MovieView | null> {
-    const movie = await this.subTextApi.getMovie(imdbId);
+    const movie = await this.movieReaderFetchApi.getMovie(imdbId);
     console.log(movie);
 
     if (movie === null || !movie.isAvailable) return null;
@@ -117,7 +126,7 @@ export class Gateway implements T.Gateway {
   }
 
   private async getSubtitleFiles(imdbId: string, subtitleId: string) {
-    const subtitleFile = await this.subTextApi.getSubtitleFile(imdbId, subtitleId);
+    const subtitleFile = await this.movieReaderFetchApi.getSubtitleFile(imdbId, subtitleId);
     if (subtitleFile === null) return null;
     const subtitles = toSubtitleBlocks(subtitleFile.subtitles);
     return { subtitleId: subtitleFile.subtitleFileId, source: subtitleFile.source.origin, author: subtitleFile.source.author, subtitles };
@@ -125,7 +134,7 @@ export class Gateway implements T.Gateway {
 
   private async getPosterUrl(imdbId: string, posterIds: string[]) {
     if (posterIds.length === 0) return null;
-    const poster = await this.subTextApi.getPoster(imdbId, posterIds[0]);
+    const poster = await this.movieReaderFetchApi.getPoster(imdbId, posterIds[0]);
     if (poster === null) return null;
     console.log(`${this.baseUrl}/movies/${imdbId}/posters/${posterIds[0]}/${poster.fileName}`);
     return `${this.baseUrl}/movies/${imdbId}/posters/${posterIds[0]}/${poster.fileName}`;

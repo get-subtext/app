@@ -23,6 +23,7 @@ const subTextDataAccess = SubTextDataAccessFactory.create({
   myListService,
   subTextApi,
 });
+
 export const gateway = new Gateway(
   baseApi,
   showNRecentMovies,

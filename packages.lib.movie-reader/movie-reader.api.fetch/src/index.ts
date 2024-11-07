@@ -1,19 +1,17 @@
-import { MovieReaderFetchApi as SubTextApiImpl } from './services/MovieReaderFetchApi';
-import type { MovieReaderFetchApi } from './services/MovieReaderFetchApi.types';
+import type { MovieReaderApi } from '@get-subtext/lib.movie-reader.api';
+import { FetchMovieReaderApi } from './services/FetchMovieReaderApi';
 
-export type * from './services/MovieReaderFetchApi.types';
-
-export interface MovieReaderFetchApiOptions {
+export interface FetchMovieReaderApiOptions {
   config: {
     apiUrlBase: string;
   };
   fetch: (input: string | URL | globalThis.Request, init?: RequestInit) => Promise<Response>;
 }
 
-export class MovieReaderFetchApiFactory {
+export class FetchMovieReaderApiFactory {
   private constructor() {}
 
-  public static create({ config, fetch }: MovieReaderFetchApiOptions): MovieReaderFetchApi {
-    return new SubTextApiImpl(config.apiUrlBase, fetch);
+  public static create({ config, fetch }: FetchMovieReaderApiOptions): MovieReaderApi {
+    return new FetchMovieReaderApi(config.apiUrlBase, fetch);
   }
 }
