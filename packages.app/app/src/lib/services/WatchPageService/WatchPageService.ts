@@ -1,4 +1,4 @@
-import type { Gateway } from '../Gateway/Gateway.types';
+import type { Gateway } from '@get-subtext/lib.gateway';
 import type * as T from './WatchPageService.types';
 
 export class WatchPageService {

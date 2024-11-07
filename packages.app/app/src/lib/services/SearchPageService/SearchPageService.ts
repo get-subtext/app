@@ -1,12 +1,8 @@
-import type { Gateway } from '../Gateway/Gateway.types';
-import type { UserIdService } from '../UserIdService/UserIdService';
+import type { Gateway } from '@get-subtext/lib.gateway';
 import type * as T from './SearchPageService.types';
 
 export class SearchPageService {
-  public constructor(
-    private readonly userIdService: UserIdService,
-    private readonly gateway: Gateway
-  ) {}
+  public constructor(private readonly gateway: Gateway) {}
 
   public async load(): Promise<T.LoadOutput> {
     const recentMovies = await this.gateway.getRecentMovies();
@@ -20,11 +16,10 @@ export class SearchPageService {
   }
 
   public async updateIsOnMyList(imdbId: string, isOnMyList: boolean): Promise<void> {
-    const userId = await this.userIdService.getMyId();
     if (isOnMyList) {
-      await this.gateway.addToMyList(userId, imdbId);
+      await this.gateway.addToMyList(imdbId);
     } else {
-      await this.gateway.removeFromMyList(userId, imdbId);
+      await this.gateway.removeFromMyList(imdbId);
     }
   }
 }

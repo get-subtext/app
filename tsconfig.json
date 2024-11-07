@@ -10,6 +10,7 @@
       "@get-subtext/lib.services": ["packages.lib/services/src"],
       "@get-subtext/lib.store.single-item": ["packages.lib.store/store.single-item/src"],
       "@get-subtext/lib.user-settings.api": ["packages.lib.user-settings/user-settings.api/src"],
+      "@get-subtext/lib.user-settings.api.single-item-store": ["packages.lib.user-settings/user-settings.api.single-item-store/src"],
       "@get-subtext/lib.utils": ["packages.lib/utils/src"],
       "app": ["packages.app/app/src"]
     }
