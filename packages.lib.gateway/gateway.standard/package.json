@@ -1,5 +1,5 @@
 {
-  "name": "@get-subtext/lib.data-access.subtext",
+  "name": "@get-subtext/lib.gateway.standard",
   "version": "1.0.0",
   "private": true,
   "scripts": {

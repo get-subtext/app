@@ -1,5 +1,5 @@
 import type { SubTextApi } from '@get-subtext/lib.movie-reader.api.fetch';
-import { toSubtitleBlocks } from '@get-subtext/lib.subtitles.utils';
+import { toSubtitleBlocks } from '@get-subtext/lib.gateway.utils';
 import Fuse from 'fuse.js';
 import { compact, includes, map, orderBy, uniq } from 'lodash-es';
 import type * as T from './SubTextDataAccess.types';

@@ -1,6 +1,6 @@
 import { Gateway } from '$lib/services/Gateway/Gateway';
 import type { MyListMovieIdManager } from '$lib/services/MyListMovieIdManager/MyListMovieIdManager';
-import { SubTextDataAccessFactory } from '@get-subtext/lib.data-access.subtext';
+import { SubTextDataAccessFactory } from '@get-subtext/lib.gateway.standard';
 import { searchNRecentMovies, showNRecentMovies } from 'app/lib/composition/movies';
 import { baseApi } from './baseApi';
 import { gitHubService } from './gitHubService';

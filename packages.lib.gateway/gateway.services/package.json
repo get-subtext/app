@@ -1,5 +1,5 @@
 {
-  "name": "@get-subtext/lib.subtitles.utils",
+  "name": "@get-subtext/lib.gateway.services",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -8,9 +8,7 @@
     "test": "jest --verbose"
   },
   "dependencies": {
-    "@types/lodash-es": "^4.17.12",
-    "@types/node": "^22.9.0",
-    "lodash-es": "^4.17.21"
+    "@types/node": "^22.9.0"
   },
   "devDependencies": {
     "@types/jest": "^29.5.14",

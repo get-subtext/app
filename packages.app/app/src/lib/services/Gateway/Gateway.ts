@@ -1,6 +1,6 @@
+import type { SubTextDataAccess } from '@get-subtext/lib.gateway.standard';
+import { toSubtitleBlocks } from '@get-subtext/lib.gateway.utils';
 import type { SubTextApi } from '@get-subtext/lib.movie-reader.api.fetch';
-import type { SubTextDataAccess } from '@get-subtext/lib.data-access.subtext';
-import { toSubtitleBlocks } from '@get-subtext/lib.subtitles.utils';
 import Fuse from 'fuse.js';
 import { compact, includes, map, orderBy, uniq } from 'lodash-es';
 import type { ImageLoader } from '../ImageLoader/ImageLoader';
