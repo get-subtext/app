@@ -1,7 +1,6 @@
-// SubTextDataAccessFactory
 import type { SubTextApi } from '@get-subtext/lib.api.subtext';
 import type { SubTextDataAccess } from '@get-subtext/lib.data-access.subtext';
-import { toSubtitles } from '@get-subtext/lib.subtitles.utils';
+import { toSubtitleBlocks } from '@get-subtext/lib.subtitles.utils';
 import Fuse from 'fuse.js';
 import { compact, includes, map, orderBy, uniq } from 'lodash-es';
 import type { ImageLoader } from '../ImageLoader/ImageLoader';
@@ -120,7 +119,7 @@ export class Gateway implements T.Gateway {
   private async getSubtitleFiles(imdbId: string, subtitleId: string) {
     const subtitleFile = await this.subTextApi.getSubtitleFile(imdbId, subtitleId);
     if (subtitleFile === null) return null;
-    const subtitles = toSubtitles(subtitleFile.subtitles);
+    const subtitles = toSubtitleBlocks(subtitleFile.subtitles);
     return { subtitleId: subtitleFile.subtitleFileId, source: subtitleFile.source.origin, author: subtitleFile.source.author, subtitles };
   }
 
