@@ -18,7 +18,7 @@ export class GitHubService {
       lines.push(`imdbId: ${imdbId}`);
       lines.push(`userId: ${userId}`);
 
-      const issueData = { title: imdbId, body: join(lines, '\n'), labels: ['subtext-bot'] };
+      const issueData = { title: `Sync Movie ${imdbId}`, body: join(lines, '\n'), labels: ['subtext-bot'] };
 
       const url = `${this.baseApi}/issues`;
       const headers = { Authorization: `token ${this.token}`, Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' };
