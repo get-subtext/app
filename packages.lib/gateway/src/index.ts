@@ -1,23 +1,26 @@
-import { SubTextApi } from '@get-subtext/lib.movie-reader.api.fetch';
-import { SubTextDataAccess as SubTextDataAccessImpl } from './services/SubTextDataAccess';
-import type { MyListService, SubTextDataAccess } from './services/SubTextDataAccess.types';
+import type { GitHubApi } from '@get-subtext/lib.github.api';
+import type { MovieReaderApi } from '@get-subtext/lib.movie-reader.api';
+import type { UserSettingsApi } from '@get-subtext/lib.user-settings.api';
+import { Gateway as GatewayImpl } from './services/Gateway';
+import type { Gateway } from './services/Gateway.types';
 
-export type * from './services/SubTextDataAccess.types';
+export type * from './services/Gateway.types';
 
-export interface SubTextDataAccessOptions {
+export interface GatewayOptions {
   config: {
     apiUrlBase: string;
     showNRecentMovies: number;
     searchNRecentMovies: number;
   };
-  subTextApi: SubTextApi;
-  myListService: MyListService;
+  movieReaderApi: MovieReaderApi;
+  gitHubApi: GitHubApi;
+  userSettingsApi: UserSettingsApi;
 }
 
-export class SubTextDataAccessFactory {
+export class GatewayFactory {
   private constructor() {}
 
-  public static create({ config, subTextApi, myListService }: SubTextDataAccessOptions): SubTextDataAccess {
-    return new SubTextDataAccessImpl(config.apiUrlBase, config.searchNRecentMovies, config.searchNRecentMovies, subTextApi, myListService);
+  public static create({ config, movieReaderApi, gitHubApi, userSettingsApi }: GatewayOptions): Gateway {
+    return new GatewayImpl(config.apiUrlBase, config.searchNRecentMovies, config.searchNRecentMovies, movieReaderApi, gitHubApi, userSettingsApi);
   }
 }

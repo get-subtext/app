@@ -8,7 +8,6 @@ export class FetchMovieReaderApi implements T.MovieReaderApi {
 
   public async queryMovies(pageNumber: number): Promise<T.MoviePage | null> {
     const url = `${this.apiUrlBase}/queries/release-date-asc/${pageNumber}/index.json`;
-    console.log(url);
     const res = await this.fetch(url);
     if (res.status === 404) return null;
     const data = (await res.json()) as T.MoviePage;
@@ -17,7 +16,6 @@ export class FetchMovieReaderApi implements T.MovieReaderApi {
 
   public async getMovie(imdbId: string): Promise<T.Movie | null> {
     const url = `${this.apiUrlBase}/movies/${imdbId}/index.json`;
-    console.log(url);
     const res = await this.fetch(url);
     if (res.status === 404) return null;
     const data = (await res.json()) as T.Movie;
@@ -26,7 +24,6 @@ export class FetchMovieReaderApi implements T.MovieReaderApi {
 
   public async getPoster(imdbId: string, posterId: string): Promise<T.Poster | null> {
     const url = `${this.apiUrlBase}/movies/${imdbId}/posters/${posterId}/index.json`;
-    console.log(url);
     const res = await this.fetch(url);
     if (res.status === 404) return null;
     const data = (await res.json()) as T.Poster;
@@ -35,7 +32,6 @@ export class FetchMovieReaderApi implements T.MovieReaderApi {
 
   public async getSubtitleFile(imdbId: string, subtitleFileId: string): Promise<T.SubtitleFile | null> {
     const url = `${this.apiUrlBase}/movies/${imdbId}/subtitle-files/${subtitleFileId}/index.json`;
-    console.log(url);
     const res = await this.fetch(url);
     if (res.status === 404) return null;
     const data = (await res.json()) as T.SubtitleFile;

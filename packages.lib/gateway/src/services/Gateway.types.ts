@@ -1,7 +1,3 @@
-export interface MyListService {
-  getMyList: () => Promise<string[]>;
-}
-
 export interface MovieView {
   imdbId: string;
   title: string;
@@ -39,10 +35,13 @@ export interface SubtitleBlock {
   text: string;
 }
 
-export interface SubTextDataAccess {
+export interface Gateway {
   getRecentMovies: () => Promise<MovieView[]>;
   searchMovies: (query: string) => Promise<MovieView[]>;
   getMovie: (imdbId: string) => Promise<MovieView | null>;
   getMovieToWatch: (imdbId: string) => Promise<MovieWatch | null>;
   getMyListMovies: (userId: string) => Promise<MovieView[]>;
+  addToMyList: (userId: string, imdbId: string) => Promise<void>;
+  removeFromMyList: (userId: string, imdbId: string) => Promise<void>;
+  submitMovieRequest: (requestId: string, userId: string, imdbId: string) => Promise<void>;
 }
