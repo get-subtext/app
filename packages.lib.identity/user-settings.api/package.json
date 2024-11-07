@@ -1,5 +1,5 @@
 {
-  "name": "@get-subtext/lib.user-settings.api",
+  "name": "@get-subtext/lib.identity.api",
   "version": "1.0.0",
   "private": true,
   "scripts": {
