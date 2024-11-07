@@ -34,9 +34,9 @@ jobs:
           DB_REPO_NAME: ${{ vars.DB_REPO_NAME }}
           BASE_PATH: '/${{ github.event.repository.name }}'
         run: |
-          echo "PUBLIC_DB_REPO_TOKEN=\"$DB_REPO_TOKEN\"" > ./packages/app/.env
-          echo "PUBLIC_DB_REPO_OWNER=\"$DB_REPO_OWNER\"" >> ./packages/app/.env
-          echo "PUBLIC_DB_REPO_NAME=\"$DB_REPO_NAME\"" >> ./packages/app/.env
+          echo "PUBLIC_DB_REPO_TOKEN=\"$DB_REPO_TOKEN\"" > ./packages.app/app/.env
+          echo "PUBLIC_DB_REPO_OWNER=\"$DB_REPO_OWNER\"" >> ./packages.app/app/.env
+          echo "PUBLIC_DB_REPO_NAME=\"$DB_REPO_NAME\"" >> ./packages.app/app/.env
           pnpm run build
 
       - name: Upload Artifacts
