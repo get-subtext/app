@@ -1,4 +1,4 @@
-import type { SubTextApi } from '@get-subtext/lib.api.subtext';
+import type { SubTextApi } from '@get-subtext/lib.movie-reader.api.fetch';
 import { toSubtitleBlocks } from '@get-subtext/lib.subtitles.utils';
 import Fuse from 'fuse.js';
 import { compact, includes, map, orderBy, uniq } from 'lodash-es';

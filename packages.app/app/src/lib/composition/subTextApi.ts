@@ -6,8 +6,8 @@
 // export const api = new SubTextApiMemoryCache(apiFetch);
 
 import { SubTextApiMemoryCache } from '$lib/services/StaticApi/SubTextApiMemoryCache';
-import { SubTextApiFactory } from '@get-subtext/lib.api.subtext';
+import { MovieReaderFetchApiFactory } from '@get-subtext/lib.movie-reader.api.fetch';
 import { baseApi } from './baseApi';
 
-export const subTextApiStd = SubTextApiFactory.create({ config: { apiUrlBase: baseApi }, fetch });
+export const subTextApiStd = MovieReaderFetchApiFactory.create({ config: { apiUrlBase: baseApi }, fetch });
 export const subTextApi = new SubTextApiMemoryCache(subTextApiStd);

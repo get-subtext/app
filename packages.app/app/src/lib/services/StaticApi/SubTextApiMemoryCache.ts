@@ -1,4 +1,4 @@
-import type * as T from '@get-subtext/lib.api.subtext';
+import type * as T from '@get-subtext/lib.movie-reader.api.fetch';
 import { isNil } from 'lodash-es';
 
 export class SubTextApiMemoryCache implements T.SubTextApi {

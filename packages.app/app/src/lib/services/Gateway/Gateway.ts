@@ -1,4 +1,4 @@
-import type { SubTextApi } from '@get-subtext/lib.api.subtext';
+import type { SubTextApi } from '@get-subtext/lib.movie-reader.api.fetch';
 import type { SubTextDataAccess } from '@get-subtext/lib.data-access.subtext';
 import { toSubtitleBlocks } from '@get-subtext/lib.subtitles.utils';
 import Fuse from 'fuse.js';

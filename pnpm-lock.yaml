@@ -84,7 +84,7 @@ importers:
         specifier: ^5.4.10
         version: 5.4.10(@types/node@22.9.0)
 
-  packages.lib.api/api.subtext:
+  packages.lib.api/movie-reader.api.fetch:
     dependencies:
       '@types/node':
         specifier: ^22.9.0

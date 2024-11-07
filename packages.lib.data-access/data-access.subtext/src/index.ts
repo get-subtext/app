@@ -1,4 +1,4 @@
-import { SubTextApi } from '@get-subtext/lib.api.subtext';
+import { SubTextApi } from '@get-subtext/lib.movie-reader.api.fetch';
 import { SubTextDataAccess as SubTextDataAccessImpl } from './services/SubTextDataAccess';
 import type { MyListService, SubTextDataAccess } from './services/SubTextDataAccess.types';
 

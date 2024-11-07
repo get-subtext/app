@@ -1,6 +1,6 @@
-import type * as T from './SubTextApi.types';
+import type * as T from './MovieReaderFetchApi.types';
 
-export class SubTextApi implements T.SubTextApi {
+export class MovieReaderFetchApi implements T.MovieReaderFetchApi {
   public constructor(
     private readonly apiUrlBase: string,
     private readonly fetch: (input: string | URL | globalThis.Request, init?: RequestInit) => Promise<Response>
