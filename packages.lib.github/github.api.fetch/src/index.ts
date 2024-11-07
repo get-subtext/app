@@ -1,7 +1,7 @@
 import type { GitHubApi } from '@get-subtext/lib.github.api';
-import { GitHubFetchApi } from './services/GitHubFetchApi';
+import { FetchGitHubApi } from './services/FetchGitHubApi';
 
-export interface GitHubFetchApiOptions {
+export interface FetchGitHubApiOptions {
   config: {
     apiToken: string;
     apiUrlBase: string;
@@ -9,10 +9,10 @@ export interface GitHubFetchApiOptions {
   fetch: (input: string | URL | globalThis.Request, init?: RequestInit) => Promise<Response>;
 }
 
-export class GitHubFetchApiFactory {
+export class FetchGitHubApiFactory {
   private constructor() {}
 
-  public static create({ config, fetch }: GitHubFetchApiOptions): GitHubApi {
-    return new GitHubFetchApi(config.apiUrlBase, config.apiToken, fetch);
+  public static create({ config, fetch }: FetchGitHubApiOptions): GitHubApi {
+    return new FetchGitHubApi(config.apiUrlBase, config.apiToken, fetch);
   }
 }

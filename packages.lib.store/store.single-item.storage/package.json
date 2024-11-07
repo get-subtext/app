@@ -1,5 +1,5 @@
 {
-  "name": "@get-subtext/lib.store.single-item",
+  "name": "@get-subtext/lib.store.single-item.storage",
   "version": "1.0.0",
   "private": true,
   "scripts": {

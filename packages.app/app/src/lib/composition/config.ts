@@ -1,20 +1,28 @@
 import { PUBLIC_DB_REPO_NAME, PUBLIC_DB_REPO_OWNER, PUBLIC_DB_REPO_TOKEN } from '$env/static/public';
 
-export const showNRecentMovies = 30;
-export const searchNRecentMovies = 500;
-
-export const databaseApiUrlBase = `https://raw.githubusercontent.com/${PUBLIC_DB_REPO_OWNER}/${PUBLIC_DB_REPO_NAME}/main/__data__`;
-export const issueApiToken = PUBLIC_DB_REPO_TOKEN;
-export const issueApiUrlBase = `https://api.gitHub.com/repos/${PUBLIC_DB_REPO_OWNER}/${PUBLIC_DB_REPO_NAME}`;
+const showNRecentMovies = 30;
+const searchNRecentMovies = 500;
+const gitHubApiToken = PUBLIC_DB_REPO_TOKEN;
+const gitHubApiUrlBase = `https://api.gitHub.com/repos/${PUBLIC_DB_REPO_OWNER}/${PUBLIC_DB_REPO_NAME}`;
+const movieReaderApiUrlBase = 'https://raw.githubusercontent.com/get-subtext/database-00/main/__data__';
 
 export const config = {
-  gitHubService: {
-    apiToken: issueApiToken,
-    apiUrlBase: issueApiUrlBase,
+  fetchGitHubApi: {
+    apiToken: gitHubApiToken,
+    apiUrlBase: gitHubApiUrlBase,
   },
-  gateWay: {
-    apiUrlBase: issueApiUrlBase,
-    showNRecentMovies,
+  fetchMovieReaderApi: {
+    apiUrlBase: movieReaderApiUrlBase,
+  },
+  myListStore: {
+    key: 'subtext:my-list',
+  },
+  userIdStore: {
+    key: 'subtext:user-id',
+  },
+  gateway: {
+    movieReaderApiUrlBase,
     searchNRecentMovies,
+    showNRecentMovies,
   },
 };

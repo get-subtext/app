@@ -1,36 +1,13 @@
-import { Gateway } from '$lib/services/Gateway/Gateway';
-import type { MyListMovieIdManager } from '$lib/services/MyListMovieIdManager/MyListMovieIdManager';
-import { SubTextDataAccessFactory } from '@get-subtext/lib.gateway';
-import { searchNRecentMovies, showNRecentMovies } from 'app/lib/composition/movies';
-import { baseApi } from './baseApi';
-import { gitHubService } from './gitHubService';
-import { imageLoader } from './imageLoader';
-import { myListMovieIdManager } from './myListMovieIdManager';
-import { subTextApi } from './subTextApi';
+import { GatewayFactory } from '@get-subtext/lib.gateway';
+import { FetchGitHubApiFactory } from '@get-subtext/lib.github.api.fetch';
+import { FetchMovieReaderApiFactory } from '@get-subtext/lib.movie-reader.api.fetch';
+import { StorageSingleItemStoreFactory } from '@get-subtext/lib.store.single-item.storage';
+import { SingleItemStoreUserSettingsApiFactory } from '@get-subtext/lib.user-settings.api.single-item-store';
+import { config } from './config';
 
-class MyListService {
-  public constructor(private readonly myListMovieIdManager: MyListMovieIdManager) {}
-
-  public async getMyList() {
-    return this.myListMovieIdManager.get();
-  }
-}
-
-const myListService = new MyListService(myListMovieIdManager);
-
-const subTextDataAccess = SubTextDataAccessFactory.create({
-  config: { apiUrlBase: baseApi, searchNRecentMovies, showNRecentMovies },
-  myListService,
-  subTextApi,
-});
-
-export const gateway = new Gateway(
-  baseApi,
-  showNRecentMovies,
-  searchNRecentMovies,
-  subTextApi,
-  subTextDataAccess,
-  gitHubService,
-  myListMovieIdManager,
-  imageLoader
-);
+export const gitHubApi = FetchGitHubApiFactory.create({ config: config.fetchGitHubApi, fetch });
+export const movieReaderApi = FetchMovieReaderApiFactory.create({ config: config.fetchMovieReaderApi, fetch });
+export const myListStore = StorageSingleItemStoreFactory.create<string[]>({ config: config.myListStore, storage: localStorage });
+export const userIdStore = StorageSingleItemStoreFactory.create<string>({ config: config.userIdStore, storage: localStorage });
+export const userSettingsApi = SingleItemStoreUserSettingsApiFactory.create({ myListStore, userIdStore });
+export const gateway = GatewayFactory.create({ config: config.gateway, gitHubApi, movieReaderApi, userSettingsApi });

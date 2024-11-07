@@ -3,7 +3,7 @@
   import Alert from '$lib/components/Alert';
   import MoviePanel, { type MyListEventDetail, type Movie, Mode as PMode } from '$lib/components/MoviePanel';
   import TransitionWhenLoaded from '$lib/components/TransitionWhenLoaded';
-  import { searchService } from '$lib/composition/searchService';
+  import { searchPageService } from '$lib/composition/searchService';
   import ArrowLeftIcon from '$lib/icons/ArrowLeftIcon.svelte';
   import MagnifyingGlassIcon from '$lib/icons/MagnifyingGlassIcon.svelte';
   import { findIndex, debounce } from 'lodash-es';
@@ -23,7 +23,7 @@
       requestAlertVisible = false;
     }
 
-    await searchService.updateIsOnMyList(imdbId, isOnMyList);
+    await searchPageService.updateIsOnMyList(imdbId, isOnMyList);
     const idx1 = findIndex(recentMovies, (m) => m.imdbId === imdbId);
     const idx2 = findIndex(displayMovies, (m) => m.imdbId === imdbId);
     if (idx1 !== -1) recentMovies[idx1].isOnMyList = isOnMyList;
@@ -33,7 +33,7 @@
   $: handleQueryChange(searchQuery);
 
   const handleQueryChange = debounce(async (searchQuery: string) => {
-    displayMovies = searchQuery === '' ? recentMovies : await searchService.search(searchQuery);
+    displayMovies = searchQuery === '' ? recentMovies : await searchPageService.search(searchQuery);
     if (displayMovies.length === 0 && doShowRequestAlert) requestAlertVisible = true;
   }, 300);
 
@@ -42,7 +42,7 @@
   const handleRemoveClick = ({ detail }: CustomEvent<MyListEventDetail>) => updateIsOnMyList(detail.id, false);
 
   onMount(async () => {
-    const loadRes = await searchService.load();
+    const loadRes = await searchPageService.load();
     recentMovies = loadRes.recentMovies;
     displayMovies = loadRes.recentMovies;
     loaded = true;

@@ -7,7 +7,7 @@
   import type { ProgressEventDetail } from '$lib/components/BottomBar/types';
   import Overlay from '$lib/components/Overlay';
   import TopBar from '$lib/components/TopBar';
-  import { watchService } from '$lib/composition/watchService';
+  import { watchPageService } from '$lib/composition/watchService';
   import { SubtitleStreamFactory, type SubtitleStream } from '@get-subtext/lib.services';
   import { onMount } from 'svelte';
   import { fade } from 'svelte/transition';
@@ -77,7 +77,7 @@
   };
 
   onMount(async () => {
-    const loadRes = await watchService.load($page.params.id);
+    const loadRes = await watchPageService.load($page.params.id);
     console.log(loadRes);
     title = loadRes.movie.title;
     subtitleStream = SubtitleStreamFactory.create({ subtitleBlocks: loadRes.movie.subtitleFiles[0].subtitles });

@@ -1,15 +1,16 @@
 import type { SingleItemStore } from '@get-subtext/lib.store.single-item';
-import { StorageSingleItemStore } from './services/StorageSingleItemStore';
+import type { UserSettingsApi } from '@get-subtext/lib.user-settings.api';
+import { SingleItemStoreUserSettingsApi } from './services/SingleItemStoreUserSettingsApi';
 
-export interface StorageSingleItemStoreOptions {
-  key: string;
-  storage: Storage;
+export interface SingleItemStoreUserSettingsApiOptions {
+  userIdStore: SingleItemStore<string>;
+  myListStore: SingleItemStore<string[]>;
 }
 
-export class StorageSingleItemStoreFactory {
+export class SingleItemStoreUserSettingsApiFactory {
   private constructor() {}
 
-  public static create<T>({ key, storage }: StorageSingleItemStoreOptions): SingleItemStore<T> {
-    return new StorageSingleItemStore<T>(key, storage);
+  public static create({ userIdStore, myListStore }: SingleItemStoreUserSettingsApiOptions): UserSettingsApi {
+    return new SingleItemStoreUserSettingsApi(userIdStore, myListStore);
   }
 }
