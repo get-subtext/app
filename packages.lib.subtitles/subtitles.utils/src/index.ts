@@ -4,4 +4,4 @@ export { formatReleaseYear } from './utils/formatReleaseYear';
 export { formatRunTimeMins } from './utils/formatRunTimeMins';
 export { formatText } from './utils/formatText';
 export { formatTextArray } from './utils/formatTextArray';
-export { toSubtitles } from './utils/toSubtitles';
+export { toSubtitleBlocks } from './utils/toSubtitles';
