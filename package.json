@@ -6,7 +6,7 @@
     "build": "run-s build:*",
     "build:01": "shx rm -rf ./build",
     "build:02": "pnpm run -r --workspace-concurrency 1 build",
-    "build:03": "shx mv ./packages/app/build ./build",
+    "build:03": "shx mv ./packages.app/app/build ./build",
     "bump-deps": "ncu -u --deep",
     "checktypes": "pnpm run -r --workspace-concurrency 1 checktypes",
     "clean": "pnpm run -r clean",
