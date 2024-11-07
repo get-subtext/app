@@ -1,7 +1,5 @@
-import { GitHubFetchApi as SubTextApiImpl } from './services/GitHubFetchApi';
-import type { GitHubFetchApi } from './services/GitHubFetchApi.types';
-
-export type * from './services/GitHubFetchApi.types';
+import type { GitHubApi } from '@get-subtext/lib.github.api';
+import { GitHubFetchApi } from './services/GitHubFetchApi';
 
 export interface GitHubFetchApiOptions {
   config: {
@@ -14,7 +12,7 @@ export interface GitHubFetchApiOptions {
 export class GitHubFetchApiFactory {
   private constructor() {}
 
-  public static create({ config, fetch }: GitHubFetchApiOptions): GitHubFetchApi {
-    return new SubTextApiImpl(config.apiUrlBase, config.apiToken, fetch);
+  public static create({ config, fetch }: GitHubFetchApiOptions): GitHubApi {
+    return new GitHubFetchApi(config.apiUrlBase, config.apiToken, fetch);
   }
 }

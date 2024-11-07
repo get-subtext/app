@@ -4,6 +4,6 @@ export interface Issue {
   labels: string[];
 }
 
-export interface GitHubFetchApi {
+export interface GitHubApi {
   submitIssue: (issue: Issue) => Promise<void>;
 }

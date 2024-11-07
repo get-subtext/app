@@ -3,10 +3,13 @@
     "baseUrl": ".",
     "paths": {
       "@get-subtext/lib.gateway": ["packages.lib/gateway/src"],
+      "@get-subtext/lib.github.api": ["packages.lib.github/github.api/src"],
       "@get-subtext/lib.github.api.fetch": ["packages.lib.github/github.api.fetch/src"],
+      "@get-subtext/lib.help-desk": ["packages.lib.help-desk/help-desk/src"],
       "@get-subtext/lib.movie-reader.api": ["packages.lib.movie-reader/movie-reader.api/src"],
       "@get-subtext/lib.movie-reader.api.fetch": ["packages.lib.movie-reader/movie-reader.api.fetch/src"],
       "@get-subtext/lib.services": ["packages.lib/services/src"],
+      "@get-subtext/lib.user-settings.api": ["packages.lib.user-settings/user-settings.api/src"],
       "@get-subtext/lib.utils": ["packages.lib/utils/src"],
       "app": ["packages.app/app/src"]
     }

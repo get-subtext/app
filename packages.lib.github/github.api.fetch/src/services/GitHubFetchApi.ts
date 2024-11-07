@@ -1,6 +1,6 @@
-import type * as T from './GitHubFetchApi.types';
+import type * as T from '@get-subtext/lib.github.api';
 
-export class GitHubFetchApi implements T.GitHubFetchApi {
+export class GitHubFetchApi implements T.GitHubApi {
   public constructor(
     private readonly apiToken: string,
     private readonly apiUrlBase: string,
