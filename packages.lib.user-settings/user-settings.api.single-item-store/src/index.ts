@@ -1,11 +1,8 @@
-import type { SingleItemStore } from '@get-subtext/lib.store.single-item';
 import type { UserSettingsApi } from '@get-subtext/lib.user-settings.api';
+import type { SingleItemStoreUserSettingsApiOptions } from './index.types';
 import { SingleItemStoreUserSettingsApi } from './services/SingleItemStoreUserSettingsApi';
 
-export interface SingleItemStoreUserSettingsApiOptions {
-  userIdStore: SingleItemStore<string>;
-  myListStore: SingleItemStore<string[]>;
-}
+export type * from './index.types';
 
 export class SingleItemStoreUserSettingsApiFactory {
   private constructor() {}

@@ -1,12 +1,8 @@
 import type { SingleItemStore } from '@get-subtext/lib.store.single-item';
+import type { StorageSingleItemStoreOptions } from './index.types';
 import { StorageSingleItemStore } from './services/StorageSingleItemStore';
 
-export interface StorageSingleItemStoreOptions {
-  config: {
-    key: string;
-  };
-  storage: Storage;
-}
+export type * from './index.types';
 
 export class StorageSingleItemStoreFactory {
   private constructor() {}

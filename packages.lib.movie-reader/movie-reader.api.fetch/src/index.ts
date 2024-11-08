@@ -1,12 +1,8 @@
 import type { MovieReaderApi } from '@get-subtext/lib.movie-reader.api';
+import type { FetchMovieReaderApiOptions } from './index.types';
 import { FetchMovieReaderApi } from './services/FetchMovieReaderApi';
 
-export interface FetchMovieReaderApiOptions {
-  config: {
-    apiUrlBase: string;
-  };
-  fetch: (input: string | URL | globalThis.Request, init?: RequestInit) => Promise<Response>;
-}
+export type * from './index.types';
 
 export class FetchMovieReaderApiFactory {
   private constructor() {}

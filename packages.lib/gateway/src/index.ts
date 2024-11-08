@@ -1,21 +1,9 @@
-import type { GitHubApi } from '@get-subtext/lib.github.api';
-import type { MovieReaderApi } from '@get-subtext/lib.movie-reader.api';
-import type { UserSettingsApi } from '@get-subtext/lib.user-settings.api';
+import type { GatewayOptions } from './index.types';
 import { Gateway as GatewayImpl } from './services/Gateway';
 import type { Gateway } from './services/Gateway.types';
 
+export type * from './index.types';
 export type * from './services/Gateway.types';
-
-export interface GatewayOptions {
-  config: {
-    movieReaderApiUrlBase: string;
-    showNRecentMovies: number;
-    searchNRecentMovies: number;
-  };
-  movieReaderApi: MovieReaderApi;
-  gitHubApi: GitHubApi;
-  userSettingsApi: UserSettingsApi;
-}
 
 export class GatewayFactory {
   private constructor() {}

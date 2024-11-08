@@ -1,13 +1,8 @@
 import type { GitHubApi } from '@get-subtext/lib.github.api';
+import type { FetchGitHubApiOptions } from './index.types';
 import { FetchGitHubApi } from './services/FetchGitHubApi';
 
-export interface FetchGitHubApiOptions {
-  config: {
-    apiToken: string;
-    apiUrlBase: string;
-  };
-  fetch: (input: string | URL | globalThis.Request, init?: RequestInit) => Promise<Response>;
-}
+export type * from './index.types';
 
 export class FetchGitHubApiFactory {
   private constructor() {}
