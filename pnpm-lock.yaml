@@ -163,6 +163,9 @@ importers:
 
   packages.lib.movie-reader/movie-reader.api.fetch:
     dependencies:
+      '@get-subtext/lib.movie-reader.api':
+        specifier: workspace:^
+        version: link:../movie-reader.api
       '@types/node':
         specifier: ^22.9.0
         version: 22.9.0
@@ -206,15 +209,12 @@ importers:
 
   packages.lib.store/store.key-value.storage:
     dependencies:
-      '@types/lodash-es':
-        specifier: ^4.17.12
-        version: 4.17.12
+      '@get-subtext/lib.store.key-value':
+        specifier: workspace:^
+        version: link:../store.key-value
       '@types/node':
         specifier: ^22.9.0
         version: 22.9.0
-      lodash-es:
-        specifier: ^4.17.21
-        version: 4.17.21
     devDependencies:
       '@types/jest':
         specifier: ^29.5.14
