@@ -1,5 +1,6 @@
 export interface MoviePage {
   pageNumber: number;
+  pageSize: number;
   pageCount: number;
   imdbIds: string[];
 }

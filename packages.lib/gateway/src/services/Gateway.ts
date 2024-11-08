@@ -3,7 +3,7 @@ import type { MovieReaderApi } from '@get-subtext/lib.movie-reader.api';
 import type { UserSettingsApi } from '@get-subtext/lib.user-settings.api';
 import { toSubtitleBlocks } from '@get-subtext/lib.utils';
 import Fuse from 'fuse.js';
-import { compact, includes, join, map, orderBy, uniq } from 'lodash-es';
+import { compact, includes, join, map, orderBy, range, take, uniq } from 'lodash-es';
 import type * as T from './Gateway.types';
 
 export class Gateway implements T.Gateway {
@@ -89,22 +89,29 @@ export class Gateway implements T.Gateway {
   }
 
   private async queryAllMovies(maxMovies: number): Promise<string[]> {
-    const output: string[] = this.extraImdbIds;
+    const output: string[] = [...this.extraImdbIds];
 
-    let idx = 1;
-    while (true) {
-      const page = await this.movieReaderApi.queryMovies(idx);
-      if (page === null) break;
-      for (let i = 0; i < page.imdbIds.length; i++) {
-        output.push(page.imdbIds[i]);
-        if (output.length >= maxMovies) break;
+    const page = await this.movieReaderApi.queryMovies(1);
+    if (page !== null) {
+      output.push(...page.imdbIds);
+
+      const pageCount = page.pageCount;
+      const pageSize = page.pageSize;
+      const totalPages = Math.min(pageCount, Math.ceil(maxMovies / pageSize));
+
+      const remainingPages = range(2, totalPages + 1);
+      const queryMoviesPromises = map(remainingPages, (p) => this.movieReaderApi.queryMovies(p));
+      const queryMoviesResults = await Promise.allSettled(queryMoviesPromises);
+
+      for (let i = 0; i < queryMoviesResults.length; i++) {
+        const queryMoviesRes = queryMoviesResults[i];
+        if (queryMoviesRes.status === 'fulfilled' && queryMoviesRes.value !== null) {
+          output.push(...queryMoviesRes.value.imdbIds);
+        }
       }
-
-      if (idx >= page.pageCount) break;
-      idx++;
     }
 
-    return uniq(output);
+    return take(uniq(output), maxMovies);
   }
 
   private async doGetMovie(imdbId: string): Promise<T.MovieDetails | T.MovieDetails | null> {
