@@ -4,7 +4,7 @@
   import XMarkIcon from '$lib/icons/XMarkIcon.svelte';
   import PlayIcon from '$lib/icons/PlayIcon.svelte';
   import PlusIcon from '$lib/icons/PlusIcon.svelte';
-  import { formatRunTimeMins, formatActors, formatRated, formatReleaseYear } from '@get-subtext/lib.utils';
+  import { formatRunTimeMins, formatActors, formatRated, formatReleaseYear, formatDirectors, formatGenres } from '@get-subtext/lib.utils';
   import { createEventDispatcher } from 'svelte';
   import * as T from './types';
   import { twMerge } from 'tailwind-merge';
@@ -42,7 +42,7 @@
     <div class="absolute top-0 left-0 right-0 p-2">
       <h3 class="text-lg font-semibold text-white">{movie.title}</h3>
       <div class="flex items-center justify-between pb-2">
-        <div class="flex space-x-1">
+        <div class="flex space-x-0.5">
           {#if movie.releaseDate !== null}<p>{formatReleaseYear(movie.releaseDate, movie.releaseYear)}</p>{/if}
           {#if movie.runTimeMins !== null && movie.runTimeMins !== null}<p class="text-gray-500">|</p>{/if}
           {#if movie.runTimeMins !== null}<p>{formatRunTimeMins(movie.runTimeMins)}</p>{/if}
