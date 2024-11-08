@@ -7,7 +7,7 @@ export type * from './index.types';
 export class SingleItemStoreUserSettingsApiFactory {
   private constructor() {}
 
-  public static create({ userIdStore, myListStore }: SingleItemStoreUserSettingsApiOptions): UserSettingsApi {
-    return new SingleItemStoreUserSettingsApi(userIdStore, myListStore);
+  public static create({ config, userIdStore, myListStore, myRequestsStore }: SingleItemStoreUserSettingsApiOptions): UserSettingsApi {
+    return new SingleItemStoreUserSettingsApi(config.myRequestsLimit, userIdStore, myListStore, myRequestsStore);
   }
 }

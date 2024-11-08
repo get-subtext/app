@@ -2,6 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "@get-subtext/app": ["packages.app/app/src"],
       "@get-subtext/lib.gateway": ["packages.lib/gateway/src"],
       "@get-subtext/lib.github.api": ["packages.lib.github/github.api/src"],
       "@get-subtext/lib.github.api.fetch": ["packages.lib.github/github.api.fetch/src"],
@@ -14,8 +15,7 @@
       "@get-subtext/lib.store.single-item.storage": ["packages.lib.store/store.single-item.storage/src"],
       "@get-subtext/lib.user-settings.api": ["packages.lib.user-settings/user-settings.api/src"],
       "@get-subtext/lib.user-settings.api.single-item-store": ["packages.lib.user-settings/user-settings.api.single-item-store/src"],
-      "@get-subtext/lib.utils": ["packages.lib/utils/src"],
-      "app": ["packages.app/app/src"]
+      "@get-subtext/lib.utils": ["packages.lib/utils/src"]
     }
   }
 }

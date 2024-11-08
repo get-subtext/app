@@ -13,13 +13,7 @@ export class SearchPageService {
     if (query === '') {
       return await this.gateway.getRecentMovies();
     } else {
-      const maybeImdbId = this.parseImdbIdOrUrl(query);
-      if (maybeImdbId !== null) {
-        const movie = await this.gateway.getMovie(maybeImdbId);
-        return movie === null ? [] : [movie];
-      } else {
-        return await this.gateway.searchMovies(maybeImdbId ?? query);
-      }
+      return await this.gateway.searchMovies(query);
     }
   }
 
@@ -29,10 +23,5 @@ export class SearchPageService {
     } else {
       await this.gateway.removeFromMyList(imdbId);
     }
-  }
-
-  private parseImdbIdOrUrl(value: string) {
-    const match = value.match(/tt\d{7,8}/);
-    return match ? match[0] : null;
   }
 }

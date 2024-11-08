@@ -12,6 +12,12 @@ const storage = browser && localStorage !== undefined ? localStorage : (fakeStor
 export const gitHubApi = FetchGitHubApiFactory.create({ config: config.fetchGitHubApiConfig, fetch });
 export const movieReaderApi = FetchMovieReaderApiFactory.create({ config: config.fetchMovieReaderApiConfig, fetch });
 export const myListStore = StorageSingleItemStoreFactory.create<string[]>({ config: config.myListStoreConfig, storage });
+export const myRequestsStore = StorageSingleItemStoreFactory.create<string[]>({ config: config.myRequestStoreConfig, storage });
 export const userIdStore = StorageSingleItemStoreFactory.create<string>({ config: config.userIdStoreConfig, storage });
-export const userSettingsApi = SingleItemStoreUserSettingsApiFactory.create({ myListStore, userIdStore });
+export const userSettingsApi = SingleItemStoreUserSettingsApiFactory.create({
+  config: config.userSettingsApiConfig,
+  myListStore,
+  userIdStore,
+  myRequestsStore,
+});
 export const gateway = GatewayFactory.create({ config: config.gatewayConfig, gitHubApi, movieReaderApi, userSettingsApi });

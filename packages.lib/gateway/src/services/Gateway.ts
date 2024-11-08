@@ -3,12 +3,10 @@ import type { MovieReaderApi } from '@get-subtext/lib.movie-reader.api';
 import type { UserSettingsApi } from '@get-subtext/lib.user-settings.api';
 import { toSubtitleBlocks } from '@get-subtext/lib.utils';
 import Fuse from 'fuse.js';
-import { compact, includes, join, map, orderBy, range, take, uniq } from 'lodash-es';
+import { compact, concat, includes, join, map, orderBy, range, take, uniq } from 'lodash-es';
 import type * as T from './Gateway.types';
 
 export class Gateway implements T.Gateway {
-  private extraImdbIds: string[] = [];
-
   public constructor(
     private readonly movieReaderApiUrlBase: string,
     private readonly showNRecentMovies: number,
@@ -19,8 +17,8 @@ export class Gateway implements T.Gateway {
   ) {}
 
   public async getRecentMovies(): Promise<T.MovieDetails[]> {
-    const imdbIds = await this.queryAllMovies(this.showNRecentMovies);
-    const movies = await Promise.all(map(imdbIds, (imdbId) => this.getMovie(imdbId)));
+    const imdbIds = await this.getRecentImdbIds(this.showNRecentMovies);
+    const movies = await Promise.all(map(imdbIds, (imdbId) => this.doGetMovie(imdbId)));
     const moviesCompact = compact(movies);
     const moviesSorted = orderBy(moviesCompact, ['releaseDate', 'releaseYear', 'title'], ['desc', 'desc', 'asc']);
     const output: T.MovieDetails[] = moviesSorted;
@@ -28,8 +26,20 @@ export class Gateway implements T.Gateway {
   }
 
   public async searchMovies(query: string): Promise<T.MovieDetails[]> {
-    const imdbIds = await this.queryAllMovies(this.searchNRecentMovies);
-    const movies = await Promise.all(map(imdbIds, (imdbId) => this.getMovie(imdbId)));
+    const maybeImdbId = this.parseImdbIdOrUrl(query);
+    if (maybeImdbId !== null) {
+      const movie = await this.doGetMovie(maybeImdbId);
+      if (movie !== null) {
+        this.userSettingsApi.addToMyRequests(maybeImdbId);
+        return [movie];
+      }
+    }
+
+    const recentImdbIds = await this.getRecentImdbIds(this.searchNRecentMovies);
+    const myListImdbIds = await this.userSettingsApi.getMyList();
+    const myRequestsImdbIds = await this.userSettingsApi.getMyRequests();
+    const imdbIds = concat(recentImdbIds, myListImdbIds, myRequestsImdbIds);
+    const movies = await Promise.all(map(imdbIds, (imdbId) => this.doGetMovie(imdbId)));
     const moviesCompact = compact(movies);
     const fuse = new Fuse(moviesCompact, { keys: ['title'], threshold: 0.3, distance: 100, minMatchCharLength: 2, useExtendedSearch: true });
     const fuseResults = fuse.search(query);
@@ -39,7 +49,7 @@ export class Gateway implements T.Gateway {
 
   public async getMyListMovies(): Promise<T.MovieDetails[]> {
     const imdbIds = await this.userSettingsApi.getMyList();
-    const movies = await Promise.all(map(imdbIds, (imdbId) => this.getMovie(imdbId)));
+    const movies = await Promise.all(map(imdbIds, (imdbId) => this.doGetMovie(imdbId)));
     const moviesCompact = compact(movies);
     const moviesSorted = orderBy(moviesCompact, ['releaseDate', 'releaseYear', 'title'], ['desc', 'desc', 'asc']);
     const output: T.MovieDetails[] = moviesSorted;
@@ -47,7 +57,7 @@ export class Gateway implements T.Gateway {
   }
 
   public async addToMyList(imdbId: string): Promise<void> {
-    this.extraImdbIds.push(imdbId);
+    await this.userSettingsApi.addToMyRequests(imdbId);
     await this.userSettingsApi.addToMyList(imdbId);
   }
 
@@ -57,7 +67,7 @@ export class Gateway implements T.Gateway {
 
   public async getMovie(imdbId: string): Promise<T.MovieDetails | null> {
     const movie = await this.doGetMovie(imdbId);
-    return movie === null ? null : movie;
+    return movie;
   }
 
   public async getMovieToWatch(imdbId: string): Promise<T.MovieWatch | null> {
@@ -72,9 +82,9 @@ export class Gateway implements T.Gateway {
   }
 
   public async submitMovieRequest(requestId: string, imdbId: string) {
-    const userId = await this.userSettingsApi.getUserId();
-    this.extraImdbIds.push(imdbId);
+    await this.userSettingsApi.addToMyRequests(imdbId);
 
+    const userId = await this.userSettingsApi.getUserId();
     const lines: string[] = [];
     lines.push(':robot: This issue is automated.');
     lines.push('');
@@ -88,8 +98,8 @@ export class Gateway implements T.Gateway {
     await this.gitHubApi.submitIssue(issue);
   }
 
-  private async queryAllMovies(maxMovies: number): Promise<string[]> {
-    const output: string[] = [...this.extraImdbIds];
+  private async getRecentImdbIds(maxMovies: number): Promise<string[]> {
+    const output: string[] = [];
 
     const page = await this.movieReaderApi.queryMovies(1);
     if (page !== null) {
@@ -141,5 +151,10 @@ export class Gateway implements T.Gateway {
     const poster = await this.movieReaderApi.getPoster(imdbId, posterIds[0]);
     if (poster === null) return null;
     return `${this.movieReaderApiUrlBase}/movies/${imdbId}/posters/${posterIds[0]}/${poster.fileName}`;
+  }
+
+  private parseImdbIdOrUrl(value: string) {
+    const match = value.match(/tt\d{7,8}/);
+    return match ? match[0] : null;
   }
 }
