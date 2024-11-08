@@ -8,7 +8,15 @@ export type * from './services/Gateway.types';
 export class GatewayFactory {
   private constructor() {}
 
-  public static create({ config, movieReaderApi, gitHubApi, userSettingsApi }: GatewayOptions): Gateway {
-    return new GatewayImpl(config.movieReaderApiUrlBase, config.searchNRecentMovies, config.searchNRecentMovies, movieReaderApi, gitHubApi, userSettingsApi);
+  public static create({ config, movieReaderApi, gitHubApi, localSearchApi, userSettingsApi }: GatewayOptions): Gateway {
+    return new GatewayImpl(
+      config.movieReaderApiUrlBase,
+      config.searchNRecentMovies,
+      config.searchNRecentMovies,
+      movieReaderApi,
+      gitHubApi,
+      localSearchApi,
+      userSettingsApi
+    );
   }
 }

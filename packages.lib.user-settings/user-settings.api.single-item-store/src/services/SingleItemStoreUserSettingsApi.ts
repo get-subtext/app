@@ -5,10 +5,8 @@ import { v1 as guid } from 'uuid';
 
 export class SingleItemStoreUserSettingsApi implements T.UserSettingsApi {
   public constructor(
-    private readonly myRequestsLimit: number,
     private readonly userIdStore: SingleItemStore<string>,
-    private readonly myListStore: SingleItemStore<string[]>,
-    private readonly myRequestsStore: SingleItemStore<string[]>
+    private readonly myListStore: SingleItemStore<string[]>
   ) {}
 
   public async getUserId(): Promise<string> {
@@ -33,22 +31,6 @@ export class SingleItemStoreUserSettingsApi implements T.UserSettingsApi {
       myList.push(imdbId);
       await this.myListStore.set(myList);
     }
-  }
-
-  public async getMyRequests(): Promise<string[]> {
-    const myRequests = (await this.myRequestsStore.get([])) ?? [];
-    return myRequests;
-  }
-
-  public async addToMyRequests(imdbId: string): Promise<void> {
-    const myRequests = (await this.myRequestsStore.get([])) ?? [];
-    const index = myRequests.indexOf(imdbId);
-
-    if (index !== -1) myRequests.splice(index, 1);
-    myRequests.unshift(imdbId);
-
-    if (myRequests.length > this.myRequestsLimit) myRequests.length = this.myRequestsLimit;
-    await this.myRequestsStore.set(myRequests);
   }
 
   public async removeFromMyList(imdbId: string): Promise<void> {

@@ -1,5 +1,5 @@
 {
-  "name": "@get-subtext/lib.gateway",
+  "name": "@get-subtext/lib.local-search.api.single-item-store",
   "version": "1.0.0",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -25,15 +25,12 @@
     "test": "jest --verbose"
   },
   "dependencies": {
-    "@get-subtext/lib.github.api": "workspace:^",
+    "@get-subtext/lib.store.single-item": "workspace:^",
     "@get-subtext/lib.local-search.api": "workspace:^",
-    "@get-subtext/lib.movie-reader.api": "workspace:^",
-    "@get-subtext/lib.user-settings.api": "workspace:^",
-    "@get-subtext/lib.utils": "workspace:^",
     "@types/lodash-es": "^4.17.12",
     "@types/node": "^22.9.0",
-    "fuse.js": "^7.0.0",
-    "lodash-es": "^4.17.21"
+    "lodash-es": "^4.17.21",
+    "uuid": "^11.0.2"
   },
   "devDependencies": {
     "@types/jest": "^29.5.14",

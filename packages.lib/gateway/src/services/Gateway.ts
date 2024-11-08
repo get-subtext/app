@@ -1,4 +1,5 @@
 import type { GitHubApi } from '@get-subtext/lib.github.api';
+import type { LocalSearchApi } from '@get-subtext/lib.local-search.api';
 import type { MovieReaderApi } from '@get-subtext/lib.movie-reader.api';
 import type { UserSettingsApi } from '@get-subtext/lib.user-settings.api';
 import { toSubtitleBlocks } from '@get-subtext/lib.utils';
@@ -13,6 +14,7 @@ export class Gateway implements T.Gateway {
     private readonly searchNRecentMovies: number,
     private readonly movieReaderApi: MovieReaderApi,
     private readonly gitHubApi: GitHubApi,
+    private readonly localSearchApi: LocalSearchApi,
     private readonly userSettingsApi: UserSettingsApi
   ) {}
 
@@ -30,14 +32,14 @@ export class Gateway implements T.Gateway {
     if (maybeImdbId !== null) {
       const movie = await this.doGetMovie(maybeImdbId);
       if (movie !== null) {
-        this.userSettingsApi.addToMyRequests(maybeImdbId);
+        this.localSearchApi.addToImdbIdList(maybeImdbId);
         return [movie];
       }
     }
 
     const recentImdbIds = await this.getRecentImdbIds(this.searchNRecentMovies);
     const myListImdbIds = await this.userSettingsApi.getMyList();
-    const myRequestsImdbIds = await this.userSettingsApi.getMyRequests();
+    const myRequestsImdbIds = await this.localSearchApi.getImdbIdList();
     const imdbIds = concat(recentImdbIds, myListImdbIds, myRequestsImdbIds);
     const movies = await Promise.all(map(imdbIds, (imdbId) => this.doGetMovie(imdbId)));
     const moviesCompact = compact(movies);
@@ -57,7 +59,7 @@ export class Gateway implements T.Gateway {
   }
 
   public async addToMyList(imdbId: string): Promise<void> {
-    await this.userSettingsApi.addToMyRequests(imdbId);
+    await this.localSearchApi.addToImdbIdList(imdbId);
     await this.userSettingsApi.addToMyList(imdbId);
   }
 
@@ -66,8 +68,7 @@ export class Gateway implements T.Gateway {
   }
 
   public async getMovie(imdbId: string): Promise<T.MovieDetails | null> {
-    const movie = await this.doGetMovie(imdbId);
-    return movie;
+    return await this.doGetMovie(imdbId);
   }
 
   public async getMovieToWatch(imdbId: string): Promise<T.MovieWatch | null> {
@@ -82,7 +83,7 @@ export class Gateway implements T.Gateway {
   }
 
   public async submitMovieRequest(requestId: string, imdbId: string) {
-    await this.userSettingsApi.addToMyRequests(imdbId);
+    await this.localSearchApi.addToImdbIdList(imdbId);
 
     const userId = await this.userSettingsApi.getUserId();
     const lines: string[] = [];
