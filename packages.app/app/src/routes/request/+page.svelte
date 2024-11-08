@@ -1,8 +1,8 @@
 <script lang="ts">
   import Alert from '$lib/components/Alert';
   import MoviePanel, { type MyListEventDetail, type Movie, Mode as PMode } from '$lib/components/MoviePanel';
-  import { HelpDesk } from '$lib/composition/HelpDesk';
-  import type { SubmitRequestOutput } from '$lib/services/HelpDesk/HelpDesk.types';
+  import { requestPageService } from '$lib/composition/requestPageService';
+  import type { SubmitRequestOutput } from '$lib/services/RequestPageService.types';
   import ArrowLeftIcon from '$lib/icons/ArrowLeftIcon.svelte';
   import MagnifyingGlassIcon from '$lib/icons/MagnifyingGlassIcon.svelte';
   import { onMount } from 'svelte';
@@ -13,7 +13,7 @@
   const idOrUrl = writable('');
 
   const handleBackClick = () => history.back();
-  const handleSubmit = async () => (requestOutput = await HelpDesk.submitRequest($idOrUrl));
+  const handleSubmit = async () => (requestOutput = await requestPageService.submitRequest($idOrUrl));
   const handleAddClick = ({ detail }: CustomEvent<MyListEventDetail>) => updateIsOnMyList(detail.id, true);
   const handleRemoveClick = ({ detail }: CustomEvent<MyListEventDetail>) => updateIsOnMyList(detail.id, false);
   const handleTryAgain = () => {
@@ -23,7 +23,7 @@
 
   const updateIsOnMyList = async (imdbId: string, isOnMyList: boolean) => {
     if (requestOutput?.code === 'ALREADY_EXISTS') {
-      await HelpDesk.updateIsOnMyList(imdbId, isOnMyList);
+      await requestPageService.updateIsOnMyList(imdbId, isOnMyList);
       requestOutput.movie.isOnMyList = isOnMyList;
     }
   };
@@ -47,8 +47,8 @@
   {#if requestOutput === null}
     <div class="pb-10">
       <p class="text-lg mb-4">
-        To make a request, <a class="font-bold text-yellow-500 underline" href={HelpDesk.getImdbQueryUrl(query)}>find your movie on IMDb</a> and submit its URL
-        or ID below. For more details, check out
+        To make a request, <a class="font-bold text-yellow-500 underline" href={requestPageService.getImdbQueryUrl(query)}>find your movie on IMDb</a> and
+        submit its URL or ID below. For more details, check out
         <a class="font-bold text-yellow-500 underline" href="https://developer.imdb.com/documentation/key-concepts" target="_blank">IMDb data concepts</a>.
       </p>
     </div>
