@@ -3,7 +3,7 @@ import { PUBLIC_DB_REPO_NAME, PUBLIC_DB_REPO_OWNER, PUBLIC_DB_REPO_TOKEN } from 
 const showNRecentMovies = 30;
 const searchNRecentMovies = 500;
 const gitHubApiToken = PUBLIC_DB_REPO_TOKEN;
-const gitHubApiUrlBase = `https://api.gitHub.com/repos/${PUBLIC_DB_REPO_OWNER}/${PUBLIC_DB_REPO_NAME}`;
+const gitHubApiUrlBase = `https://api.github.com/repos/${PUBLIC_DB_REPO_OWNER}/${PUBLIC_DB_REPO_NAME}`;
 const movieReaderApiUrlBase = 'https://raw.githubusercontent.com/get-subtext/database-00/main/__data__';
 
 export const config = {

@@ -13,6 +13,6 @@ export class FetchGitHubApiFactory {
   private constructor() {}
 
   public static create({ config, fetch }: FetchGitHubApiOptions): GitHubApi {
-    return new FetchGitHubApi(config.apiUrlBase, config.apiToken, fetch);
+    return new FetchGitHubApi(config.apiToken, config.apiUrlBase, fetch);
   }
 }
