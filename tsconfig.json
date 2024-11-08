@@ -8,6 +8,8 @@
       "@get-subtext/lib.movie-reader.api": ["packages.lib.movie-reader/movie-reader.api/src"],
       "@get-subtext/lib.movie-reader.api.fetch": ["packages.lib.movie-reader/movie-reader.api.fetch/src"],
       "@get-subtext/lib.services": ["packages.lib/services/src"],
+      "@get-subtext/lib.store.key-value": ["packages.lib.store/store.key-value/src"],
+      "@get-subtext/lib.store.key-value.storage": ["packages.lib.store/store.key-value.storage/src"],
       "@get-subtext/lib.store.single-item": ["packages.lib.store/store.single-item/src"],
       "@get-subtext/lib.store.single-item.storage": ["packages.lib.store/store.single-item.storage/src"],
       "@get-subtext/lib.user-settings.api": ["packages.lib.user-settings/user-settings.api/src"],
