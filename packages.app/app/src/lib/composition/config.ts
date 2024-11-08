@@ -32,11 +32,3 @@ export const gatewayConfig: GatewayConfig = {
   searchNRecentMovies,
   showNRecentMovies,
 };
-
-export const config = {
-  fetchGitHubApi: fetchGitHubApiConfig,
-  fetchMovieReaderApi: fetchMovieReaderApiConfig,
-  myListStore: myListStoreConfig,
-  userIdStore: userIdStoreConfig,
-  gateway: gatewayConfig,
-};

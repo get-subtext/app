@@ -9,14 +9,21 @@
   import { writable } from 'svelte/store';
 
   let query = '';
+  let submitEnabled = true;
   let requestOutput: SubmitRequestOutput | null = null;
   const idOrUrl = writable('');
 
   const handleBackClick = () => history.back();
-  const handleSubmit = async () => (requestOutput = await requestPageService.submitRequest($idOrUrl));
   const handleAddClick = ({ detail }: CustomEvent<MyListEventDetail>) => updateIsOnMyList(detail.id, true);
   const handleRemoveClick = ({ detail }: CustomEvent<MyListEventDetail>) => updateIsOnMyList(detail.id, false);
+
+  const handleSubmit = async () => {
+    submitEnabled = false;
+    requestOutput = await requestPageService.submitRequest($idOrUrl);
+  };
+
   const handleTryAgain = () => {
+    submitEnabled = true;
     $idOrUrl = '';
     requestOutput = null;
   };
@@ -58,6 +65,7 @@
           type="text"
           placeholder="IMDb movie URL or ID"
           class="h-10 pl-10 pr-4 py-2 w-full bg-black text-white text-lg focus:outline-none"
+          disabled={!submitEnabled}
           bind:value={$idOrUrl}
         />
         <MagnifyingGlassIcon class="absolute left-3 top-1/2 transform -translate-y-1/2 text-white size-5 " />
