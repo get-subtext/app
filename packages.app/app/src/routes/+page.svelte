@@ -46,7 +46,8 @@
   {:else}
     <Alert>
       <p class="text-white text-xl">
-        <a class="font-bold text-yellow-500 underline" href={`${base}/search`}>Bookmark a movie</a>, to quickly load the subtitles while watching.
+        <a class="font-bold text-yellow-500 underline" href={`${base}/search`}>Add a movie</a> to your list, so you can quickly load the subtitles when you're ready
+        to watch.
       </p>
     </Alert>
     <Alert>
