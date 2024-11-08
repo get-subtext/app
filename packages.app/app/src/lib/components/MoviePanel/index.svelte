@@ -42,12 +42,12 @@
     <div class="absolute top-0 left-0 right-0 p-2">
       <h3 class="text-lg font-semibold text-white">{movie.title}</h3>
       <div class="flex items-center justify-between pb-2">
-        <div class="flex space-x-2">
+        <div class="flex space-x-1">
           {#if movie.releaseDate !== null}<p>{formatReleaseYear(movie.releaseDate, movie.releaseYear)}</p>{/if}
           {#if movie.runTimeMins !== null && movie.runTimeMins !== null}<p class="text-gray-500">|</p>{/if}
           {#if movie.runTimeMins !== null}<p>{formatRunTimeMins(movie.runTimeMins)}</p>{/if}
         </div>
-        {#if movie.rated !== null}<p class="text-xs border border-gray-400 bg-gray-800 px-3">{formatRated(movie.rated)}</p>{/if}
+        {#if movie.rated !== null}<p class="text-xs border border-gray-400 bg-gray-800 px-2">{movie.rated}</p>{/if}
       </div>
       {formatActors(movie.actors, 'Unknown')}
       <!-- <p class="hidden sm:block">
