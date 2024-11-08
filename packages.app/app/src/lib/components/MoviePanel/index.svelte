@@ -4,7 +4,7 @@
   import XMarkIcon from '$lib/icons/XMarkIcon.svelte';
   import PlayIcon from '$lib/icons/PlayIcon.svelte';
   import PlusIcon from '$lib/icons/PlusIcon.svelte';
-  import { formatRunTimeMins, formatTextArray, formatRated, formatReleaseYear } from '@get-subtext/lib.utils';
+  import { formatRunTimeMins, formatActors, formatRated, formatReleaseYear } from '@get-subtext/lib.utils';
   import { createEventDispatcher } from 'svelte';
   import * as T from './types';
   import { twMerge } from 'tailwind-merge';
@@ -44,22 +44,23 @@
       <div class="flex items-center justify-between pb-2">
         <div class="flex space-x-2">
           {#if movie.releaseDate !== null}<p>{formatReleaseYear(movie.releaseDate, movie.releaseYear)}</p>{/if}
+          {#if movie.runTimeMins !== null && movie.runTimeMins !== null}<p class="text-gray-500">|</p>{/if}
           {#if movie.runTimeMins !== null}<p>{formatRunTimeMins(movie.runTimeMins)}</p>{/if}
         </div>
-        {#if movie.rated !== null}<p class="text-xs border border-gray-400 bg-gray-800 px-3">{formatRated(movie.rated, '?')}</p>{/if}
+        {#if movie.rated !== null}<p class="text-xs border border-gray-400 bg-gray-800 px-3">{formatRated(movie.rated)}</p>{/if}
       </div>
-      {formatTextArray(movie.actors, 'Unknown')}
+      {formatActors(movie.actors, 'Unknown')}
       <!-- <p class="hidden sm:block">
         <span class="text-sm text-gray-500">{movie.genres.length === 1 ? 'Genre' : 'Genres'}:</span>
-        {formatTextArray(movie.genres, 'Unknown')}
+        {formatGenres(movie.genres, 'Unknown')}
       </p>
       <p class="hidden sm:block">
         <span class="text-sm text-gray-500">Cast:</span>
-        {formatTextArray(movie.actors, 'Unknown')}
+        {formatActors(movie.actors, 'Unknown')}
       </p>
       <p class="hidden sm:block">
         <span class="text-sm text-gray-500">{movie.directors.length === 1 ? 'Director' : 'Directors'}:</span>
-        {formatTextArray(movie.directors, 'Unknown')}
+        {formatDirectors(movie.directors, 'Unknown')}
       </p>
       <p class="hidden sm:block">
         {movie.plot}

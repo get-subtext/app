@@ -1,7 +1,9 @@
+export { formatActors } from './utils/formatActors';
+export { formatDirectors } from './utils/formatDirectors';
+export { formatGenres } from './utils/formatGenres';
 export { formatMsAsTime } from './utils/formatMsAsTime';
 export { formatRated } from './utils/formatRated';
 export { formatReleaseYear } from './utils/formatReleaseYear';
 export { formatRunTimeMins } from './utils/formatRunTimeMins';
-export { formatText } from './utils/formatText';
-export { formatTextArray } from './utils/formatTextArray';
+export { formatWriters } from './utils/formatWriters';
 export { toSubtitleBlocks } from './utils/toSubtitles';

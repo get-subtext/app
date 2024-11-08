@@ -1,4 +1,4 @@
-export const formatRunTimeMins = (runTimeMins: number | null, dflt: string | null = ''): string | null => {
+export const formatRunTimeMins = (runTimeMins: number | null, dflt: string | null = null): string | null => {
   if (runTimeMins === null) return dflt;
 
   const hours = Math.floor(runTimeMins / 60);
