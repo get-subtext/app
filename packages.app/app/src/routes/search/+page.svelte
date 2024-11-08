@@ -3,7 +3,7 @@
   import Alert from '$lib/components/Alert';
   import MoviePanel, { type MyListEventDetail, type Movie, Mode as PMode } from '$lib/components/MoviePanel';
   import TransitionWhenLoaded from '$lib/components/TransitionWhenLoaded';
-  import { searchPageService } from '$lib/composition/searchService';
+  import { searchPageService } from '$lib/composition/searchPageService';
   import ArrowLeftIcon from '$lib/icons/ArrowLeftIcon.svelte';
   import MagnifyingGlassIcon from '$lib/icons/MagnifyingGlassIcon.svelte';
   import { findIndex, debounce } from 'lodash-es';

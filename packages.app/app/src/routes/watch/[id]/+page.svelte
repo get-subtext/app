@@ -7,7 +7,7 @@
   import type { ProgressEventDetail } from '$lib/components/BottomBar/types';
   import Overlay from '$lib/components/Overlay';
   import TopBar from '$lib/components/TopBar';
-  import { watchPageService } from '$lib/composition/watchService';
+  import { watchPageService } from '$lib/composition/watchPageService';
   import { SubtitleStreamFactory, type SubtitleStream } from '@get-subtext/lib.services';
   import { onMount } from 'svelte';
   import { fade } from 'svelte/transition';
