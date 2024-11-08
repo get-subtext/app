@@ -11,31 +11,20 @@
   import { fade } from 'svelte/transition';
 
   let searchQuery = '';
-  let recentMovies: Movie[] = [];
-  let displayMovies: Movie[] = [];
-  let doShowRequestAlert = true;
-  let requestAlertVisible = false;
+  let movies: Movie[] = [];
   let loaded = false;
 
   const updateIsOnMyList = async (imdbId: string, isOnMyList: boolean) => {
-    if (isOnMyList) {
-      doShowRequestAlert = false;
-      requestAlertVisible = false;
-    }
-
     await searchPageService.updateIsOnMyList(imdbId, isOnMyList);
-    const idx1 = findIndex(recentMovies, (m) => m.imdbId === imdbId);
-    const idx2 = findIndex(displayMovies, (m) => m.imdbId === imdbId);
-    if (idx1 !== -1) recentMovies[idx1].isOnMyList = isOnMyList;
-    if (idx2 !== -1) displayMovies[idx2].isOnMyList = isOnMyList;
+    const idx1 = findIndex(movies, (m) => m.imdbId === imdbId);
+    const idx2 = findIndex(movies, (m) => m.imdbId === imdbId);
+    if (idx1 !== -1) movies[idx1].isOnMyList = isOnMyList;
+    if (idx2 !== -1) movies[idx2].isOnMyList = isOnMyList;
   };
 
   $: handleQueryChange(searchQuery);
 
-  const handleQueryChange = debounce(async (searchQuery: string) => {
-    displayMovies = searchQuery === '' ? recentMovies : await searchPageService.search(searchQuery);
-    if (displayMovies.length === 0 && doShowRequestAlert) requestAlertVisible = true;
-  }, 300);
+  const handleQueryChange = debounce(async (searchQuery: string) => (movies = await searchPageService.search(searchQuery)), 300);
 
   const handleBackClick = ({}: MouseEvent) => history.back();
   const handleAddClick = ({ detail }: CustomEvent<MyListEventDetail>) => updateIsOnMyList(detail.id, true);
@@ -43,10 +32,8 @@
 
   onMount(async () => {
     const loadRes = await searchPageService.load();
-    recentMovies = loadRes.recentMovies;
-    displayMovies = loadRes.recentMovies;
+    movies = loadRes.movies;
     loaded = true;
-    setTimeout(() => (requestAlertVisible = doShowRequestAlert), 5000);
   });
 </script>
 
@@ -66,7 +53,7 @@
 </div>
 <div class="mt-16"></div>
 <TransitionWhenLoaded {loaded}>
-  {#if recentMovies.length === 0}
+  {#if movies.length === 0}
     <Alert>
       <p class="text-white text-xl">
         There are currently no movies in the database. Would you like to
@@ -74,14 +61,14 @@
       </p>
     </Alert>
   {:else}
-    {#if displayMovies.length > 0}
+    {#if movies.length > 0}
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 p-2 overflow-y-auto scrollbar-hide">
-        {#each displayMovies as movie}
+        {#each movies as movie}
           <MoviePanel mode={PMode.View} {movie} on:addclick={handleAddClick} on:removeclick={handleRemoveClick} />
         {/each}
       </div>
     {/if}
-    {#if requestAlertVisible}
+    {#if false}
       <div transition:fade={{ duration: 1000 }} class="fixed bottom-0 left-0 right-0 bg-black">
         <Alert>
           <p class="text-white text-xl">

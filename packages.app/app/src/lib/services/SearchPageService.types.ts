@@ -16,7 +16,7 @@ export interface LoadOutputRecentMovie {
 }
 
 export interface LoadOutput {
-  recentMovies: LoadOutputRecentMovie[];
+  movies: LoadOutputRecentMovie[];
 }
 
 export interface SearchOutput {

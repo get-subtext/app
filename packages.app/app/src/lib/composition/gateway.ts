@@ -6,11 +6,12 @@ import { StorageSingleItemStoreFactory } from '@get-subtext/lib.store.single-ite
 import { SingleItemStoreUserSettingsApiFactory } from '@get-subtext/lib.user-settings.api.single-item-store';
 import { config } from './config';
 
-const ls = browser && localStorage !== undefined ? localStorage : (undefined as unknown as Storage);
+const fakeStorage = { getItem: () => {}, setItem: () => {}, removeItem: () => {} };
+const storage = browser && localStorage !== undefined ? localStorage : (fakeStorage as unknown as Storage);
 
 export const gitHubApi = FetchGitHubApiFactory.create({ config: config.fetchGitHubApi, fetch });
 export const movieReaderApi = FetchMovieReaderApiFactory.create({ config: config.fetchMovieReaderApi, fetch });
-export const myListStore = StorageSingleItemStoreFactory.create<string[]>({ config: config.myListStore, storage: ls });
-export const userIdStore = StorageSingleItemStoreFactory.create<string>({ config: config.userIdStore, storage: ls });
+export const myListStore = StorageSingleItemStoreFactory.create<string[]>({ config: config.myListStore, storage });
+export const userIdStore = StorageSingleItemStoreFactory.create<string>({ config: config.userIdStore, storage });
 export const userSettingsApi = SingleItemStoreUserSettingsApiFactory.create({ myListStore, userIdStore });
 export const gateway = GatewayFactory.create({ config: config.gateway, gitHubApi, movieReaderApi, userSettingsApi });

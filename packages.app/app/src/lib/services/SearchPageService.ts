@@ -5,14 +5,12 @@ export class SearchPageService {
   public constructor(private readonly gateway: Gateway) {}
 
   public async load(): Promise<T.LoadOutput> {
-    const recentMovies = await this.gateway.getRecentMovies();
-    return { recentMovies };
+    const movies = await this.gateway.getRecentMovies();
+    return { movies };
   }
 
   public async search(query: string): Promise<T.SearchOutput[]> {
-    if (query === '') return [];
-    const matchingMovies: T.SearchOutput[] = await this.gateway.searchMovies(query);
-    return matchingMovies;
+    return query === '' ? await this.gateway.getRecentMovies() : await this.gateway.searchMovies(query);
   }
 
   public async updateIsOnMyList(imdbId: string, isOnMyList: boolean): Promise<void> {
