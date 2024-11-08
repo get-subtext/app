@@ -53,12 +53,12 @@ export interface SubmitRequestOutputFoundMovie {
 }
 
 export interface Gateway {
-  getRecentMovies: () => Promise<MovieDetails[]>;
-  searchMovies: (query: string) => Promise<MovieDetails[]>;
-  getMovie: (imdbId: string) => Promise<MovieDetails | null>;
-  getMovieToWatch: (imdbId: string) => Promise<MovieWatch | null>;
-  getMyListMovies: () => Promise<MovieDetails[]>;
-  addToMyList: (imdbId: string) => Promise<void>;
-  removeFromMyList: (imdbId: string) => Promise<void>;
-  submitMovieRequest: (requestId: string, imdbId: string) => Promise<void>;
+  getRecentMovies(): Promise<MovieDetails[]>;
+  searchMovies(query: string): Promise<MovieDetails[]>;
+  getMovie(imdbId: string): Promise<MovieDetails | null>;
+  getMovieToWatch(imdbId: string): Promise<MovieWatch | null>;
+  getMyListMovies(): Promise<MovieDetails[]>;
+  addToMyList(imdbId: string): Promise<void>;
+  removeFromMyList(imdbId: string): Promise<void>;
+  submitMovieRequest(requestId: string, imdbId: string): Promise<void>;
 }

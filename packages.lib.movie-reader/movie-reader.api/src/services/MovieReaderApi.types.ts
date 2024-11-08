@@ -59,8 +59,8 @@ export interface SubtitleFile {
 }
 
 export interface MovieReaderApi {
-  queryMovies: (pageNumber: number) => Promise<MoviePage | null>;
-  getMovie: (imdbId: string) => Promise<Movie | null>;
-  getPoster: (imdbId: string, posterId: string) => Promise<Poster | null>;
-  getSubtitleFile: (imdbId: string, subtitleFileId: string) => Promise<SubtitleFile | null>;
+  queryMovies(pageNumber: number): Promise<MoviePage | null>;
+  getMovie(imdbId: string): Promise<Movie | null>;
+  getPoster(imdbId: string, posterId: string): Promise<Poster | null>;
+  getSubtitleFile(imdbId: string, subtitleFileId: string): Promise<SubtitleFile | null>;
 }

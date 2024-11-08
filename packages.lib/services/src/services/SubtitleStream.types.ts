@@ -1,21 +1,21 @@
 export interface SubtitleBlock {
-  start: number;
-  end: number;
-  text: string;
+  startnumber;
+  endnumber;
+  textstring;
 }
 
 export interface CurrentFrame {
-  subtitle: string;
-  progress: number;
+  subtitlestring;
+  progressnumber;
 }
 
 export interface SubtitleStream {
-  start: () => void;
-  pause: () => void;
-  goTo: (percentage: number) => void;
-  skipToNext: () => void;
-  skipToPrevious: () => void;
-  getCurrentFrame: () => CurrentFrame;
-  getRemainingTime: () => void;
-  getElapsedTime: () => number;
+  start(): void;
+  pause(): void;
+  goTo(percentagenumber): void;
+  skipToNext(): void;
+  skipToPrevious(): void;
+  getCurrentFrame(): CurrentFrame;
+  getRemainingTime(): void;
+  getElapsedTime(): number;
 }

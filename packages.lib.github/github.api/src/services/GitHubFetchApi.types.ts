@@ -5,5 +5,5 @@ export interface Issue {
 }
 
 export interface GitHubApi {
-  submitIssue: (issue: Issue) => Promise<void>;
+  submitIssue(issue: Issue): Promise<void>;
 }
