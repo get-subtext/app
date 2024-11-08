@@ -255,15 +255,12 @@ importers:
 
   packages.lib.store/store.single-item.storage:
     dependencies:
-      '@types/lodash-es':
-        specifier: ^4.17.12
-        version: 4.17.12
+      '@get-subtext/lib.store.single-item':
+        specifier: workspace:^
+        version: link:../store.single-item
       '@types/node':
         specifier: ^22.9.0
         version: 22.9.0
-      lodash-es:
-        specifier: ^4.17.21
-        version: 4.17.21
     devDependencies:
       '@types/jest':
         specifier: ^29.5.14
@@ -304,6 +301,12 @@ importers:
 
   packages.lib.user-settings/user-settings.api.single-item-store:
     dependencies:
+      '@get-subtext/lib.store.single-item':
+        specifier: workspace:^
+        version: link:../../packages.lib.store/store.single-item
+      '@get-subtext/lib.user-settings.api':
+        specifier: workspace:^
+        version: link:../user-settings.api
       '@types/lodash-es':
         specifier: ^4.17.12
         version: 4.17.12
