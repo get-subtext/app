@@ -54,8 +54,10 @@
   {#if requestOutput === null}
     <div class="pb-10">
       <p class="text-lg mb-4">
-        To make a request, <a class="font-bold text-yellow-500 underline" href={requestPageService.getImdbQueryUrl(query)}>find your movie on IMDb</a> and
-        submit its URL or ID below. For more details, check out
+        To make a request, <a class="font-bold text-yellow-500 underline" href={requestPageService.getImdbQueryUrl(query)} target="_blank"
+          >find your movie on IMDb</a
+        >
+        and submit its URL or ID below. For more details, check out
         <a class="font-bold text-yellow-500 underline" href="https://developer.imdb.com/documentation/key-concepts" target="_blank">IMDb data concepts</a>.
       </p>
     </div>
