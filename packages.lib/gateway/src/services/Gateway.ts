@@ -142,9 +142,4 @@ export class Gateway implements T.Gateway {
     if (poster === null) return null;
     return `${this.movieReaderApiUrlBase}/movies/${imdbId}/posters/${posterIds[0]}/${poster.fileName}`;
   }
-
-  private parseImdbIdOrUrl(value: string) {
-    const match = value.match(/tt\d{7,8}/);
-    return match ? match[0] : null;
-  }
 }
