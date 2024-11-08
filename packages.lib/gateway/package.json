@@ -25,6 +25,10 @@
     "test": "jest --verbose"
   },
   "dependencies": {
+    "@get-subtext/lib.github.api": "workspace:^",
+    "@get-subtext/lib.movie-reader.api": "workspace:^",
+    "@get-subtext/lib.user-settings.api": "workspace:^",
+    "@get-subtext/lib.utils": "workspace:^",
     "@types/lodash-es": "^4.17.12",
     "@types/node": "^22.9.0",
     "fuse.js": "^7.0.0",

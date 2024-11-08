@@ -1,3 +1,3 @@
-import { ImageLoader } from 'app/lib/services/ImageLoader';
+import { ImageLoader } from '$lib/services/ImageLoader';
 
 export const imageLoader = new ImageLoader();

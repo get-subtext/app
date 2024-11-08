@@ -25,6 +25,7 @@
     "test": "jest --verbose"
   },
   "dependencies": {
+    "@get-subtext/lib.github.api": "workspace:^",
     "@types/node": "^22.9.0"
   },
   "devDependencies": {
