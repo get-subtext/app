@@ -5,6 +5,7 @@
   import PlayIcon from '$lib/icons/PlayIcon.svelte';
   import PlusIcon from '$lib/icons/PlusIcon.svelte';
   import { formatRunTimeMins, formatActors, formatRated, formatReleaseYear, formatDirectors, formatGenres } from '@get-subtext/lib.utils';
+  import defaultPoster from './poster.jpg';
   import { createEventDispatcher } from 'svelte';
   import * as T from './types';
   import { twMerge } from 'tailwind-merge';
@@ -12,6 +13,7 @@
   export let movie: T.Movie;
   export let mode: T.Mode;
 
+  console.log(defaultPoster);
   const dispatch = createEventDispatcher();
 
   const onAddToListClick = (id: string) => {
@@ -32,10 +34,10 @@
     {/if}
     {#if mode === T.Mode.Play}
       <a href={`${base}/watch/${movie.imdbId}`} class="w-1/2">
-        <img src={movie.posterUrl} alt={movie.title} class="w-full h-full object-cover" />
+        <img src={movie.posterUrl ?? defaultPoster} alt={movie.title} class="w-full h-full object-cover" />
       </a>
     {:else}
-      <img src={movie.posterUrl} alt={movie.title} class="w-full h-full object-cover" />
+      <img src={movie.posterUrl ?? defaultPoster} alt={movie.title} class="w-full h-full object-cover" />
     {/if}
   </div>
   <div class="w-1/2 relative text-sm text-gray-300">
