@@ -8,7 +8,6 @@
   import MagnifyingGlassIcon from '$lib/icons/MagnifyingGlassIcon.svelte';
   import { findIndex, debounce } from 'lodash-es';
   import { onMount } from 'svelte';
-  import { fade } from 'svelte/transition';
 
   let searchQuery = '';
   let movies: Movie[] = [];
@@ -53,30 +52,15 @@
 </div>
 <div class="mt-16"></div>
 <TransitionWhenLoaded {loaded}>
-  {#if movies.length === 0}
-    <Alert>
-      <p class="text-white text-xl">
-        There are currently no movies in the database. Would you like to
-        <a class="font-bold text-yellow-500 underline" href={`${base}/request?q=${searchQuery}`}>request a movie?</a>
-      </p>
-    </Alert>
-  {:else}
-    {#if movies.length > 0}
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 p-2 overflow-y-auto scrollbar-hide">
-        {#each movies as movie}
-          <MoviePanel mode={PMode.View} {movie} on:addclick={handleAddClick} on:removeclick={handleRemoveClick} />
-        {/each}
-      </div>
-    {/if}
-    {#if false}
-      <div transition:fade={{ duration: 1000 }} class="fixed bottom-0 left-0 right-0 bg-black">
-        <Alert>
-          <p class="text-white text-xl">
-            Can't find a specific movie? <a class="font-bold text-yellow-500 underline" href={`${base}/request?q=${searchQuery}`}>Make a request</a>, and we'll
-            do our best to add it.
-          </p>
-        </Alert>
-      </div>
-    {/if}
-  {/if}
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 p-2 overflow-y-auto scrollbar-hide">
+    {#each movies as movie}
+      <MoviePanel mode={PMode.View} {movie} on:addclick={handleAddClick} on:removeclick={handleRemoveClick} />
+    {/each}
+  </div>
+  <Alert>
+    <p class="text-white text-xl">
+      Can't find a specific movie? <a class="font-bold text-yellow-500 underline" href={`${base}/request?q=${searchQuery}`}>Make a request</a>, and we'll do our
+      best to add it.
+    </p>
+  </Alert>
 </TransitionWhenLoaded>
