@@ -65,12 +65,11 @@
           type="text"
           placeholder="IMDb movie URL or ID"
           class="h-10 pl-10 pr-4 py-2 w-full bg-black text-white text-lg focus:outline-none"
-          disabled={!submitEnabled}
           bind:value={$idOrUrl}
         />
         <MagnifyingGlassIcon class="absolute left-3 top-1/2 transform -translate-y-1/2 text-white size-5 " />
       </div>
-      <button type="submit" class="h-10 px-4 bg-yellow-500 text-white font-bold hover:bg-yellow-600">Submit</button>
+      <button type="submit" class="h-10 px-4 bg-yellow-500 text-white font-bold hover:bg-yellow-600" disabled={!submitEnabled}>Submit</button>
     </form>
   {:else if requestOutput.code === 'INVALID_INPUT'}
     <Alert>
