@@ -109,7 +109,6 @@ export class Gateway implements T.Gateway {
 
   private async doGetMovie(imdbId: string): Promise<T.MovieDetails | T.MovieDetails | null> {
     const movie = await this.movieReaderApi.getMovie(imdbId);
-    console.log(movie);
 
     if (movie === null || !movie.isAvailable) return null;
 

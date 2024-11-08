@@ -1,18 +1,18 @@
 export interface SubtitleBlock {
-  startnumber;
-  endnumber;
-  textstring;
+  start: number;
+  end: number;
+  text: string;
 }
 
 export interface CurrentFrame {
-  subtitlestring;
-  progressnumber;
+  subtitle: string;
+  progress: number;
 }
 
 export interface SubtitleStream {
   start(): void;
   pause(): void;
-  goTo(percentagenumber): void;
+  goTo(percentage: number): void;
   skipToNext(): void;
   skipToPrevious(): void;
   getCurrentFrame(): CurrentFrame;

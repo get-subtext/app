@@ -2,13 +2,13 @@
   import { page } from '$app/stores';
   import { FontSizeEnum } from '$lib/types/FontSizeEnum';
   import { SubtitleStreamStateEnum } from '$lib/types/SubtitleStreamStateEnum';
-  import { formatMsAsTime } from '@get-subtext/lib.utils';
   import BottomBar from '$lib/components/BottomBar';
   import type { ProgressEventDetail } from '$lib/components/BottomBar/types';
   import Overlay from '$lib/components/Overlay';
   import TopBar from '$lib/components/TopBar';
   import { watchPageService } from '$lib/composition/watchPageService';
   import { SubtitleStreamFactory, type SubtitleStream } from '@get-subtext/lib.services';
+  import { formatMsAsTime } from '@get-subtext/lib.utils';
   import { onMount } from 'svelte';
   import { fade } from 'svelte/transition';
 
@@ -78,7 +78,6 @@
 
   onMount(async () => {
     const loadRes = await watchPageService.load($page.params.id);
-    console.log(loadRes);
     title = loadRes.movie.title;
     subtitleStream = SubtitleStreamFactory.create({ subtitleBlocks: loadRes.movie.subtitleFiles[0].subtitles });
     showControls();
