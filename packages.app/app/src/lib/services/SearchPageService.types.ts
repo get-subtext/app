@@ -2,7 +2,7 @@ export interface LoadOutputRecentMovie {
   imdbId: string;
   title: string;
   releaseDate: string | null;
-  releaseYear: string | null;
+  releaseYear: number | null;
   posterUrl: string | null;
   rated: string | null;
   genres: string[];
@@ -23,7 +23,7 @@ export interface SearchOutput {
   imdbId: string;
   title: string;
   releaseDate: string | null;
-  releaseYear: string | null;
+  releaseYear: number | null;
   posterUrl: string | null;
   rated: string | null;
   genres: string[];

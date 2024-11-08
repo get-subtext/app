@@ -9,7 +9,7 @@ export interface Movie {
   imdbId: string;
   title: string;
   releaseDate: string | null;
-  releaseYear: string | null;
+  releaseYear: number | null;
   posterIds: string[];
   rated: string | null;
   genres: string[];

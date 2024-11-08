@@ -2,7 +2,7 @@ export interface SubmitRequestOutputFoundMovie {
   imdbId: string;
   title: string;
   releaseDate: string | null;
-  releaseYear: string | null;
+  releaseYear: number | null;
   posterUrl: string | null;
   rated: string | null;
   genres: string[];
