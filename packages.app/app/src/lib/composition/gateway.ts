@@ -9,15 +9,17 @@ import * as config from './config';
 const fakeStorage = { getItem: () => {}, setItem: () => {}, removeItem: () => {} };
 const storage = browser && localStorage !== undefined ? localStorage : (fakeStorage as unknown as Storage);
 
-export const gitHubApi = FetchGitHubApiFactory.create({ config: config.fetchGitHubApiConfig, fetch });
-export const movieReaderApi = FetchMovieReaderApiFactory.create({ config: config.fetchMovieReaderApiConfig, fetch });
-export const myListStore = StorageSingleItemStoreFactory.create<string[]>({ config: config.myListStoreConfig, storage });
-export const myRequestsStore = StorageSingleItemStoreFactory.create<string[]>({ config: config.myRequestStoreConfig, storage });
-export const userIdStore = StorageSingleItemStoreFactory.create<string>({ config: config.userIdStoreConfig, storage });
-export const userSettingsApi = SingleItemStoreUserSettingsApiFactory.create({
-  config: config.userSettingsApiConfig,
-  myListStore,
-  userIdStore,
-  myRequestsStore,
-});
+const gitHubApiOptions = { config: config.fetchGitHubApiConfig, fetch };
+const gitHubApi = FetchGitHubApiFactory.create(gitHubApiOptions);
+const movieReaderApiOptions = { config: config.fetchMovieReaderApiConfig, fetch };
+const movieReaderApi = FetchMovieReaderApiFactory.create(movieReaderApiOptions);
+const myListStoreOptions = { config: config.myListStoreConfig, storage };
+const myListStore = StorageSingleItemStoreFactory.create<string[]>(myListStoreOptions);
+const myRequestsStoreOptions = { config: config.myRequestStoreConfig, storage };
+const myRequestsStore = StorageSingleItemStoreFactory.create<string[]>(myRequestsStoreOptions);
+const userIdStoreOptions = { config: config.userIdStoreConfig, storage };
+const userIdStore = StorageSingleItemStoreFactory.create<string>(userIdStoreOptions);
+const userSettingsApiOptions = { config: config.userSettingsApiConfig, myListStore, userIdStore, myRequestsStore };
+const userSettingsApi = SingleItemStoreUserSettingsApiFactory.create(userSettingsApiOptions);
+
 export const gateway = GatewayFactory.create({ config: config.gatewayConfig, gitHubApi, movieReaderApi, userSettingsApi });
