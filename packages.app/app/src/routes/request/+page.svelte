@@ -84,7 +84,7 @@
     <Alert>
       <p class="text-white text-xl">Good news! We've got the movie that matches your request.</p>
     </Alert>
-    <MoviePanel class="p-2" mode={PMode.View} movie={requestOutput.movie} on:addclick={handleAddClick} on:removeclick={handleRemoveClick} />
+    <MoviePanel mode={PMode.View} movie={requestOutput.movie} on:addclick={handleAddClick} on:removeclick={handleRemoveClick} />
   {:else if requestOutput.code === 'REQUEST_SUBMITTED'}
     <Alert>
       <p class="text-white text-xl">
