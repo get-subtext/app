@@ -1,3 +1,3 @@
-# @get-subtext/lib.movie-reader.api.fetch
+# @get-subtext/lib.gateway
 
-> A client side library for accessing SubText data.
+> A client side library acting as a gateway for all interactions with SubText.

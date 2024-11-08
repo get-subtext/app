@@ -1,3 +1,3 @@
-# @get-subtext/lib.utils
+# @get-subtext/lib.store.single-item
 
-> A client side library for accessing SubText data.
+> A client side library with Single Item Store services.

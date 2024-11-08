@@ -1,3 +1,3 @@
-# @get-subtext/lib.movie-reader.api.fetch
+# @get-subtext/lib.services
 
-> A client side library for accessing SubText data.
+> A client side library containing services for working with subtitles.

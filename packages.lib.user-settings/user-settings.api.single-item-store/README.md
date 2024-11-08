@@ -1,3 +1,3 @@
-# @get-subtext/lib.utils
+# @get-subtext/lib.user-settings.api.single-item-store
 
-> A client side library for accessing SubText data.
+> A client side library for interfacing with SubText User Settings.
