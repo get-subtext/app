@@ -43,10 +43,10 @@
       <h3 class="text-lg font-semibold text-white">{movie.title}</h3>
       <div class="flex items-center justify-between pb-2">
         <div class="flex space-x-2">
-          <p>{formatReleaseYear(movie.releaseDate, null, 'Unknown')}</p>
-          <p>{formatRunTimeMins(movie.runTimeMins, 'Unknown')}</p>
+          {#if movie.releaseDate !== null}<p>{formatReleaseYear(movie.releaseDate, movie.releaseYear)}</p>{/if}
+          {#if movie.runTimeMins !== null}<p>{formatRunTimeMins(movie.runTimeMins)}</p>{/if}
         </div>
-        <p class="text-xs border border-gray-400 bg-gray-800 px-3">{formatRated(movie.rated, '?')}</p>
+        {#if movie.rated !== null}<p class="text-xs border border-gray-400 bg-gray-800 px-3">{formatRated(movie.rated, '?')}</p>{/if}
       </div>
       {formatTextArray(movie.actors, 'Unknown')}
       <!-- <p class="hidden sm:block">
