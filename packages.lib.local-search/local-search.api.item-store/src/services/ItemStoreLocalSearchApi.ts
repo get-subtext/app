@@ -1,10 +1,10 @@
 import type * as T from '@get-subtext/lib.local-search.api';
-import type { SingleItemStore } from '@get-subtext/lib.store.single-item';
+import type { ItemStore } from '@get-subtext/lib.store.item';
 
-export class SingleItemStoreLocalSearchApi implements T.LocalSearchApi {
+export class ItemStoreLocalSearchApi implements T.LocalSearchApi {
   public constructor(
     private readonly localSearchLimit: number,
-    private readonly localSearchStore: SingleItemStore<string[]>
+    private readonly localSearchStore: ItemStore<string[]>
   ) {}
 
   public async getImdbIdList(): Promise<string[]> {

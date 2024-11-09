@@ -1,6 +1,6 @@
-import type * as T from '@get-subtext/lib.store.single-item';
+import type * as T from '@get-subtext/lib.store.item';
 
-export class StorageSingleItemStore<T> implements T.SingleItemStore<T> {
+export class StorageItemStore<T> implements T.ItemStore<T> {
   public constructor(
     private readonly key: string,
     private readonly storage: Storage

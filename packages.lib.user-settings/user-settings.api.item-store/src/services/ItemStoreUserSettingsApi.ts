@@ -1,12 +1,12 @@
-import type { SingleItemStore } from '@get-subtext/lib.store.single-item';
+import type { ItemStore } from '@get-subtext/lib.store.item';
 import type * as T from '@get-subtext/lib.user-settings.api';
 import { isNil } from 'lodash-es';
 import { v1 as guid } from 'uuid';
 
-export class SingleItemStoreUserSettingsApi implements T.UserSettingsApi {
+export class ItemStoreUserSettingsApi implements T.UserSettingsApi {
   public constructor(
-    private readonly userIdStore: SingleItemStore<string>,
-    private readonly myListStore: SingleItemStore<string[]>
+    private readonly userIdStore: ItemStore<string>,
+    private readonly myListStore: ItemStore<string[]>
   ) {}
 
   public async getUserId(): Promise<string> {

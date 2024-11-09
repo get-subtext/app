@@ -1,5 +1,5 @@
 {
-  "name": "@get-subtext/lib.local-search.api.single-item-store",
+  "name": "@get-subtext/lib.local-search.api.item-store",
   "version": "1.0.0",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -25,7 +25,7 @@
     "test": "jest --verbose"
   },
   "dependencies": {
-    "@get-subtext/lib.store.single-item": "workspace:^",
+    "@get-subtext/lib.store.item": "workspace:^",
     "@get-subtext/lib.local-search.api": "workspace:^",
     "@types/lodash-es": "^4.17.12",
     "@types/node": "^22.9.0",

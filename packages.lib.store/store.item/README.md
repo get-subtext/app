@@ -1,3 +1,3 @@
-# @get-subtext/lib.store.single-item.storage
+# @get-subtext/lib.store.item
 
 > A client side library with Single Item Store services.

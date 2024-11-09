@@ -1,5 +1,5 @@
 {
-  "name": "@get-subtext/lib.user-settings.api.single-item-store",
+  "name": "@get-subtext/lib.store.item.storage",
   "version": "1.0.0",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -25,12 +25,8 @@
     "test": "jest --verbose"
   },
   "dependencies": {
-    "@get-subtext/lib.store.single-item": "workspace:^",
-    "@get-subtext/lib.user-settings.api": "workspace:^",
-    "@types/lodash-es": "^4.17.12",
-    "@types/node": "^22.9.0",
-    "lodash-es": "^4.17.21",
-    "uuid": "^11.0.2"
+    "@get-subtext/lib.store.item": "workspace:^",
+    "@types/node": "^22.9.0"
   },
   "devDependencies": {
     "@types/jest": "^29.5.14",
