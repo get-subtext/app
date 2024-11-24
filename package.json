@@ -1,0 +1,21 @@
+{
+  "name": "root",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "bump-deps": "ncu -u --deep",
+    "dev": "serve node_modules/@get-subtext/app/build",
+    "format": "prettier --write \"**/*.{js,ts,json,md,jsx,tsx}\"",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "@get-subtext/app": "^0.0.1"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^15.2.10",
+    "npm-check-updates": "^17.1.11",
+    "prettier": "^3.3.3",
+    "serve": "^14.2.4"
+  }
+}
